@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ee">
+  <title>Maturitní otázky · PT2</title>
+  <style>
+    :root{--paper:#090a09;--ink:#f2f1eb;--muted:#aaa99f;--line:#30322d;--green:#a5c68e;--lime:#d9ed83;--white:#141613;--serif:Georgia,'Times New Roman',serif;--sans:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}button{font:inherit;color:inherit}.page{max-width:1240px;margin:auto;padding:30px 46px 76px}.topbar{display:flex;justify-content:space-between;align-items:center;padding:7px 0 25px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:650;letter-spacing:.01em}.brandmark{width:25px;height:25px;display:grid;place-items:center;background:var(--green);color:#10130e;border-radius:8px;font:italic 16px var(--serif)}.course{font-size:11px;letter-spacing:.13em;font-weight:700;color:var(--green);border:1px solid #495343;padding:7px 10px;border-radius:99px}.hero{padding:66px 0 35px}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700}.hero h1{font:500 clamp(42px,7vw,76px)/.98 var(--serif);letter-spacing:-.045em;margin:18px 0 17px}.hero p{font-size:15px;color:#aaa99f;max-width:550px;line-height:1.7;margin:0}.toolbar{display:flex;align-items:center;justify-content:space-between;padding:25px 0 14px;border-bottom:1px solid var(--line);margin-bottom:19px}.section-title{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}.progress{font-size:12px;color:var(--muted)}.progress strong{color:var(--green)}.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.card{position:relative;text-align:left;min-height:166px;padding:17px 17px 15px;background:var(--white);border:1px solid var(--line);border-radius:12px;cursor:pointer;display:flex;flex-direction:column;transition:transform .18s,border-color .18s,box-shadow .18s}.card:hover{transform:translateY(-3px);border-color:#78876c;box-shadow:0 8px 22px #0008}.card:focus-visible,.close:focus-visible,.nav-btn:focus-visible{outline:3px solid #93ad51;outline-offset:3px}.card-top{display:flex;justify-content:space-between;align-items:center}.number{font:italic 20px var(--serif);color:#a5c68e}.status{font-size:10px;color:#aaa99f}.card h2{font:500 18px/1.25 var(--serif);margin:auto 0 8px;letter-spacing:-.01em}.card-foot{display:flex;justify-content:space-between;align-items:center;color:#aaa99f;font-size:11px}.arrow{font-size:17px;line-height:1;color:var(--green)}.hint{margin-top:20px;font-size:11px;color:#85867e}
+    .overlay{position:fixed;inset:0;background:#000d;backdrop-filter:blur(4px);z-index:10;display:none;align-items:center;justify-content:center;padding:28px}.overlay.open{display:flex}.modal{width:min(900px,100%);height:min(780px,100%);background:var(--paper);border:1px solid #34362f;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 28px 90px #0009;animation:rise .22s ease-out}@keyframes rise{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line);background:#10120f;flex-shrink:0}.modal-mark{display:flex;align-items:center;gap:11px;color:var(--muted);font-size:12px}.modal-mark b{color:var(--green);font:italic 19px var(--serif)}.close{border:1px solid var(--line);background:#1a1c18;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer}.modal-scroll{overflow-y:auto;overscroll-behavior:contain;flex:1}.detail{max-width:700px;margin:0 auto;padding:43px 36px 60px}.detail-kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--green);font-weight:700}.detail h2{font:500 clamp(32px,5vw,50px)/1.06 var(--serif);letter-spacing:-.035em;margin:14px 0}.detail-lead{font:17px/1.65 var(--serif);color:#b3b2a9;max-width:600px;margin-bottom:35px}.editor-note{display:flex;gap:9px;padding:12px 14px;margin:0 0 29px;border:1px solid #3a4530;border-radius:8px;background:#171c14;color:#c3c9b5;font-size:12px;line-height:1.5}.editor-note span{color:var(--green)}.block{padding:22px 0;border-top:1px solid var(--line)}.block h3{font:500 22px var(--serif);margin:0 0 10px}.editable{outline:none;white-space:pre-wrap;line-height:1.75;font-size:14px;color:#d0d0c8;min-height:28px;border-radius:4px}.editable:focus{box-shadow:0 0 0 3px #455532}.editable:empty:before{content:attr(data-placeholder);color:#85867e}.detail-tools{margin-top:27px;display:flex;align-items:center;gap:10px}.done-btn{background:var(--green);border:0;border-radius:7px;color:#10130e;padding:11px 15px;font-size:12px;font-weight:650;cursor:pointer}.done-btn.done{background:#31402c;color:#e5f2ce}.save-label{font-size:11px;color:#aaa99f}.modal-foot{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:11px 18px;background:#10120f;flex-shrink:0}.nav-btn{border:1px solid var(--line);background:#1a1c18;border-radius:7px;padding:8px 11px;cursor:pointer;font-size:12px}.nav-btn:disabled{opacity:.35;cursor:default}.foot-count{font-size:11px;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:720px){.page{padding:20px 20px 50px}.hero{padding:49px 0 26px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{min-height:145px;padding:14px}.overlay{padding:10px}.modal{height:100%;border-radius:12px}.detail{padding:34px 23px 45px}.modal-head{padding:12px 15px}}@media(max-width:370px){.grid{grid-template-columns:1fr}.card{min-height:124px}}
+  </style>
+  <style>
+    .study-text{white-space:pre-wrap;line-height:1.75;font-size:14px;color:#d0d0c8;min-height:28px}.math-fraction{display:inline-grid;grid-template-rows:auto auto;vertical-align:middle;text-align:center;line-height:1.15;margin:0 4px;font-size:.96em}.math-fraction span:first-child{padding:0 5px 2px;border-bottom:1px solid currentColor}.math-fraction span:last-child{padding:2px 5px 0}.hero{display:flex;align-items:center;justify-content:space-between;gap:38px}.hero-copy{flex:1}.searchbox{position:relative;width:min(360px,42%);align-self:center}.searchbox label{display:block;margin-bottom:9px;color:#aaa99f;font-size:11px;font-weight:650;letter-spacing:.1em;text-transform:uppercase}.search-field{display:flex;align-items:center;gap:10px;background:#141613;border:1px solid #383a34;border-radius:10px;padding:0 13px;transition:border-color .2s}.search-field:focus-within{border-color:#829c6e}.search-icon{color:var(--green);font-size:17px}.search-field input{width:100%;height:47px;border:0;outline:0;background:transparent;color:var(--ink);font:14px var(--sans)}.search-field input::placeholder{color:#777970}.search-results{position:absolute;z-index:5;top:100%;left:0;right:0;display:none;margin-top:7px;max-height:340px;overflow:auto;background:#171915;border:1px solid #383a34;border-radius:10px;box-shadow:0 15px 35px #000b}.search-results.show{display:block}.search-result{display:block;width:100%;padding:12px 14px;text-align:left;border:0;border-bottom:1px solid #30322d;background:transparent;cursor:pointer}.search-result:last-child{border-bottom:0}.search-result:hover,.search-result:focus{background:#23271f;outline:none}.result-title{font:16px var(--serif);color:#f2f1eb}.result-meta{display:block;margin-top:4px;font-size:11px;color:#aaa99f;line-height:1.45}.result-meta mark{color:#c9e4aa;background:transparent}.empty-result{padding:14px;color:#aaa99f;font-size:12px;line-height:1.5}@media(max-width:720px){.hero{display:block}.searchbox{width:100%;margin-top:28px}.search-results{max-height:250px}}
+  </style>
+<style>
+    .ask-button{flex:0 0 31px;height:31px;border:0;border-radius:7px;background:var(--green);color:#10130e;font-size:19px;font-weight:700;cursor:pointer}.ask-button:hover{filter:brightness(1.12)}.assistant-caption{margin-top:8px;color:#85867e;font-size:10px}.search-results{max-height:390px}.assistant-message{padding:12px 14px;border-bottom:1px solid #30322d}.assistant-question{font-size:12px;font-weight:650;color:#d9edc4;margin-bottom:8px}.assistant-answer{font-size:12px;line-height:1.55;color:#d0d0c8}.assistant-source{margin-top:10px;padding-top:9px;border-top:1px solid #30322d}.assistant-source button{padding:0;border:0;background:none;color:#b9d99f;text-align:left;font:11px var(--sans);cursor:pointer}.assistant-source button:hover{text-decoration:underline}.assistant-empty{color:#aaa99f;font-size:12px;line-height:1.55}@media(max-width:720px){.search-results{max-height:250px}}
+</style><style>
+    .search-results{position:relative;top:auto;left:auto;right:auto;display:none;margin-top:12px;max-height:290px;overflow:auto}.search-results.show{display:block}
+</style><style>
+    .search-results{max-height:none;overflow:visible;scroll-behavior:auto}
+</style><style>
+    .searchbox{z-index:4}.search-results{position:absolute;top:calc(100% + 26px);left:0;right:0;margin-top:0;max-height:240px;overflow:hidden;scroll-behavior:auto}
+    .assistant-message{padding:9px 12px}.assistant-source{margin-top:7px;padding-top:6px}.assistant-answer{font-size:11px;line-height:1.4}
+</style><style>
+    .hero{position:relative;padding-bottom:250px}.search-results{top:calc(100% + 26px);max-height:195px;overflow:hidden}.assistant-message{padding:7px 10px}.assistant-question{margin-bottom:4px}.assistant-answer{display:block;max-height:56px;overflow:hidden}.assistant-source{display:block;max-height:42px;overflow:hidden}
+    @media(max-width:720px){.hero{padding-bottom:250px}}
+</style><style>
+    .hero{align-items:flex-start;padding-bottom:110px}.searchbox{align-self:flex-start}
+    @media(max-width:720px){.hero{padding-bottom:230px}.searchbox{margin-top:28px}}
+</style><style>
+    .assistant-message{margin:0 0 8px;border:1px solid #30322d;border-radius:8px;background:#10120f}.assistant-message:last-child{margin-bottom:0}
+</style><style>
+    .assistant-message{margin:0 0 14px;border-bottom:0}.assistant-message:last-child{margin-bottom:0}
+</style><style>
+    .search-results{background:transparent;border:0;box-shadow:none;padding:0}.assistant-message{margin:0 0 24px}.assistant-message:last-child{margin-bottom:0}
+</style><style>
+    .page{max-width:none;width:100%;padding-left:clamp(24px,5vw,96px);padding-right:clamp(24px,5vw,96px)}
+    .searchbox{width:min(760px,48vw)}
+    @media(max-width:720px){.page{padding-left:20px;padding-right:20px}.searchbox{width:100%}}
+</style><style>
+    .hero{padding-top:46px;padding-bottom:60px}.grid{gap:9px}.card{min-height:140px;padding:14px 15px 13px}
+    @media(max-width:720px){.hero{padding-top:38px;padding-bottom:190px}.grid{gap:8px}.card{min-height:128px;padding:13px}}
+</style><style>
+    .grid{gap:11px}.card{background:#141713;border-color:#383b34;padding:13px 15px 12px;min-height:142px}.card-top{padding-bottom:10px;border-bottom:1px solid #2b2e28}.number{display:grid;place-items:center;width:35px;height:29px;border-radius:7px;background:#22291d;color:#c3e19f;font:italic 19px var(--serif)}.status{display:none}.card h2{font:500 20px/1.2 var(--serif);margin:auto 0 9px;color:#f4f2eb}.card-foot{padding-top:8px;border-top:1px solid #2b2e28;color:#b0b2a8;font-size:11px}.card:hover{background:#1a1e17;border-color:#91a97c;box-shadow:0 8px 24px #0009}.card:focus-visible{outline-color:#b9db91}
+    @media(max-width:720px){.card{min-height:132px}}
+</style><style>
+    .grid{gap:11px}.card{min-height:142px;padding:15px 16px 13px;background:#141613;border:1px solid #30322d;border-radius:12px}.card-top{padding-bottom:0;border-bottom:0}.number{display:inline;color:#a5c68e;background:transparent;width:auto;height:auto;border-radius:0;font:italic 20px var(--serif)}.status{display:block;font-size:10px;color:#aaa99f}.card h2{font:500 19px/1.25 var(--serif);margin:auto 0 8px;color:#f2f1eb}.card-foot{padding-top:0;border-top:0;color:#aaa99f;font-size:11px}.card:hover{background:#181b16;border-color:#718367;box-shadow:0 8px 22px #0008}.card:focus-visible{outline-color:#93ad51}
+    @media(max-width:720px){.card{min-height:132px;padding:14px}}
+</style><style>
+    .card h2:empty{display:none}.card .card-top{justify-content:flex-start}.card .number{font:500 11px var(--sans);font-style:normal;letter-spacing:.11em;text-transform:uppercase;color:#a5c68e}.card{justify-content:flex-start}.card h2{margin:auto 0 0}
+</style><style>
+    .card h2:empty{display:block}.card .card-top{justify-content:space-between;padding-bottom:0;border-bottom:0}.card .number{display:inline;width:auto;height:auto;border-radius:0;background:transparent;color:#a5c68e;font:italic 20px var(--serif);letter-spacing:normal;text-transform:none}.card .status{display:block}.card h2{font:500 19px/1.25 var(--serif);margin:auto 0 8px;color:#f2f1eb}.card-foot{display:flex;padding-top:0;border-top:0;color:#aaa99f;font-size:11px}
+</style><style>
+    #detailTitle{position:relative;padding-bottom:18px;margin-bottom:17px}#detailTitle::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:1px;background:#51544a}
+</style><style>
+    .hero{padding-top:20px;padding-bottom:25px}.search-results{max-height:165px}
+    @media(max-width:720px){.hero{padding-top:24px;padding-bottom:175px}.search-results{max-height:140px}}
+</style><style>
+    .grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.card{min-height:92px;padding:9px 12px 8px;border-radius:10px}.card-top .number{font-size:16px}.card h2{font-size:16px;line-height:1.15;margin:8px 0 4px}.card-foot{font-size:10px}
+    @media(max-width:1000px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+    @media(max-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.card{min-height:88px;padding:8px 10px}.card h2{font-size:15px;margin-top:6px}}
+</style><style>
+    .hero{display:grid;grid-template-columns:minmax(300px, .78fr) minmax(0,1.22fr);gap:20px;align-items:start}.hero-copy{min-width:0}.searchbox{justify-self:center;align-self:start;width:min(760px,86%)}
+    @media(max-width:720px){.hero{display:block}.searchbox{width:100%;justify-self:stretch}}
+</style><style>
+    .card{min-height:108px;padding:10px 13px 9px}.card .number{font-size:18px}.card .status{font-size:11px}.card h2{font-size:20px;line-height:1.22}.card-foot{font-size:12px}
+    @media(max-width:720px){.card{min-height:100px}.card h2{font-size:18px}.card .number{font-size:17px}.card-foot{font-size:11px}}
+</style><style>
+    .card-foot{justify-content:flex-end}
+</style><style>
+    .card h2{margin:auto 0!important;text-align:center;align-self:stretch}
+</style><style>
+    .card h2{font-size:24px;line-height:1.18}.card .number{font-size:20px}
+    @media(max-width:720px){.card h2{font-size:21px}.card .number{font-size:19px}}
+</style><style>
+    .card-title-group{display:flex;flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;text-align:center}.card-title-group h2{margin:0!important}.card-author{margin-top:5px;color:#b8b8ac;font:12px/1.3 var(--sans);text-align:center}.card-author[hidden]{display:none}.card-top .status{display:none}
+    @media(max-width:720px){.card-author{font-size:11px}}
+</style><style>
+    .page{padding-top:20px;padding-bottom:16px}.topbar{padding-bottom:16px}.hero{padding-top:10px;padding-bottom:12px}.hero h1{font-size:clamp(42px,6vw,64px);margin:12px 0}.hero p{line-height:1.45}.toolbar{padding:15px 0 10px;margin-bottom:12px}.grid{gap:6px}.card{min-height:96px;padding:8px 11px 7px}
+    @media(max-width:720px){.page{padding-top:16px;padding-bottom:18px}.hero{padding-top:18px;padding-bottom:175px}.grid{gap:7px}.card{min-height:100px;padding:8px 10px}}
+</style><style>
+    .hero{padding-bottom:170px}.search-results{max-height:165px}
+    @media(max-width:720px){.hero{padding-bottom:175px}.search-results{max-height:140px}}
+</style><style>
+    .hero{padding-bottom:90px}
+    @media(max-width:720px){.hero{padding-bottom:175px}}
+</style><style>
+    .assistant-question{font-size:14px;line-height:1.4;margin-bottom:6px}.assistant-answer{font-size:13px;line-height:1.5;max-height:72px}.assistant-message{padding:10px 12px}.assistant-source button{font-size:12px}.search-results{max-height:200px}.hero{padding-bottom:105px}
+    @media(max-width:720px){.assistant-question{font-size:13px}.assistant-answer{font-size:12px;max-height:64px}.search-results{max-height:175px}.hero{padding-bottom:195px}}
+</style><style>
+    .hero{padding-top:30px}.hero h1{font-size:clamp(56px,7vw,88px);line-height:.96;margin:18px 0 20px}.hero .eyebrow{font-size:13px;letter-spacing:.17em}.hero p{font-size:18px;line-height:1.55;max-width:620px}.searchbox label{font-size:13px;margin-bottom:11px}.search-field input{height:56px;font-size:16px}.search-icon{font-size:20px}.ask-button{flex-basis:36px;height:36px;font-size:21px}
+    @media(max-width:720px){.hero{padding-top:25px}.hero h1{font-size:clamp(48px,13vw,68px);margin:14px 0 16px}.hero p{font-size:16px}.search-field input{height:50px}}
+</style><style>
+    .hero{padding-top:20px}.hero h1{font-size:clamp(42px,6vw,64px);line-height:.98;margin:12px 0}.hero .eyebrow{font-size:11px;letter-spacing:.16em}.hero p{font-size:15px;line-height:1.45;max-width:550px}.searchbox label{font-size:11px;margin-bottom:9px}.search-field input{height:47px;font-size:14px}.search-icon{font-size:17px}.ask-button{flex-basis:31px;height:31px;font-size:19px}
+    @media(max-width:720px){.hero{padding-top:24px}.hero h1{font-size:clamp(42px,6vw,64px);margin:12px 0}.hero p{font-size:15px}.search-field input{height:47px}}
+</style><style>
+    .hero{grid-template-columns:minmax(300px,.7fr) minmax(0,1.3fr)}.searchbox{justify-self:start;width:min(760px,94%)}
+    @media(max-width:720px){.hero{display:block}.searchbox{width:100%;justify-self:stretch}}
+</style><style>
+    .hero{grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr)}.searchbox{justify-self:center;width:min(760px,86%)}
+    @media(max-width:720px){.hero{display:block}.searchbox{width:100%;justify-self:stretch}}
+</style><style>
+    /* Keep the headline the same size, but let it run across the empty space. */
+    @media(min-width:1100px){.hero-copy{flex:1 1 auto;min-width:0}.hero h1 br{display:none}.hero h1{white-space:nowrap}}
+    @media(max-width:1099px) and (min-width:721px){.hero-copy{flex:1 1 auto;min-width:0}}
+</style><style>
+    .searchbox label{text-align:center}.search-field{max-width:560px;margin-inline:auto}
+    .hero h1 br{display:block}
+</style><style>
+    .hero{padding-bottom:160px}.hero h1{word-spacing:.12em}
+    @media(max-width:720px){.hero{padding-bottom:195px}}
+</style><style>
+    .search-highlight{color:#10130e;background:#b9db91;border-radius:3px;padding:0 2px;box-shadow:0 0 0 2px #b9db9140}
+</style><style>
+    .search-results.search-history-list{background:#171915;border:1px solid #383a34;border-radius:10px;box-shadow:0 15px 35px #000b;padding:7px;overflow:hidden}
+    .search-history-title{padding:6px 9px 7px;color:#aaa99f;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+    .search-history-item{display:block;width:100%;padding:9px;text-align:left;color:#e5e6df;background:transparent;border:0;border-top:1px solid #30322d;font:13px var(--sans);cursor:pointer}
+    .search-history-item:hover,.search-history-item:focus{background:#23271f;outline:none}
+</style><style>
+    .detail{max-width:none;width:100%}.detail-lead{max-width:none}
+</style><style>
+    .study-text{font-size:16px;line-height:1.8;color:#e0e0d8}.detail-lead{color:#d0cfc7}
+</style><style>
+    .study-figures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+    .study-figure{min-width:0;margin:0;padding:9px;background:#111310;border:1px solid #30322d;border-radius:9px}
+    .study-figure img{display:block;width:100%;height:190px;object-fit:contain;border-radius:5px}
+    .study-figure.wide,.study-figures .study-figure:only-child{grid-column:1/-1}
+    .study-image-open{display:block;width:100%;padding:0;border:0;background:transparent;border-radius:5px;cursor:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNIDE2LjAwLDguNTAgTCAxNy40Niw4LjY0IEwgMTkuODMsNi43NiBMIDIxLjU2LDcuNjkgTCAyMS4zMCwxMC43MCBMIDIyLjI0LDExLjgzIEwgMjUuMjQsMTIuMTcgTCAyNS44MSwxNC4wNSBMIDIzLjUwLDE2LjAwIEwgMjMuMzYsMTcuNDYgTCAyNS4yNCwxOS44MyBMIDI0LjMxLDIxLjU2IEwgMjEuMzAsMjEuMzAgTCAyMC4xNywyMi4yNCBMIDE5LjgzLDI1LjI0IEwgMTcuOTUsMjUuODEgTCAxNi4wMCwyMy41MCBMIDE0LjU0LDIzLjM2IEwgMTIuMTcsMjUuMjQgTCAxMC40NCwyNC4zMSBMIDEwLjcwLDIxLjMwIEwgOS43NiwyMC4xNyBMIDYuNzYsMTkuODMgTCA2LjE5LDE3Ljk1IEwgOC41MCwxNi4wMCBMIDguNjQsMTQuNTQgTCA2Ljc2LDEyLjE3IEwgNy42OSwxMC40NCBMIDEwLjcwLDEwLjcwIEwgMTEuODMsOS43NiBMIDEyLjE3LDYuNzYgTCAxNC4wNSw2LjE5IFoiIGZpbGw9IiNhNGE2OWYiIHN0cm9rZT0iIzExMTQwZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIyLjciIGZpbGw9IiMxMTE0MGYiIHN0cm9rZT0iIzY1Njc1ZiIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48L3N2Zz4=") 16 16, zoom-in}
+    .study-image-open:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+    .study-figure figcaption{margin-top:7px;color:#aaa99f;font-size:11px;line-height:1.4}
+    .question-search{display:flex;align-items:center;gap:7px;width:min(390px,48%);margin:0 auto;padding:4px 6px 4px 12px;background:#171915;border:1px solid #383a34;border-radius:8px}
+    .question-search:focus-within{border-color:#829c6e}.question-search input{min-width:0;flex:1;height:31px;border:0;outline:0;background:transparent;color:var(--ink);font:13px var(--sans)}
+    .question-search input::placeholder{color:#85867e}.question-search button{flex:0 0 29px;height:29px;border:0;border-radius:6px;background:var(--green);color:#10130e;font-size:19px;cursor:pointer}
+    .question-search #questionSearchCount[hidden]{display:none!important}.question-search #questionSearchCount{white-space:nowrap;color:#b9d99f;font-size:10px}.question-search-hit{color:#10130e;background:#b9db91;border-radius:2px;padding:0 1px}.question-search-hit:first-of-type{box-shadow:0 0 0 2px #b9db9170}
+    @media(max-width:720px){.study-figures{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.study-figure img{height:135px}.question-search{width:auto;flex:1;margin:0 8px}.modal-mark{font-size:10px;gap:6px}.question-search input{font-size:11px}.question-search #questionSearchCount{display:none}}
+    @media(max-width:430px){.study-figures{grid-template-columns:1fr}.question-search{padding-left:7px}.question-search input::placeholder{font-size:10px}}
+</style>
+<style>
+    .detail-title-row{display:flex;align-items:flex-start;gap:24px}.detail-title-row h2{flex:1;min-width:0;margin:14px 0}.detail-title-row .question-search{flex:0 1 390px;width:min(390px,52%);margin:18px 0 0}
+    @media(max-width:720px){.detail-title-row{gap:10px;flex-wrap:wrap}.detail-title-row h2{flex:1 1 100%;margin:12px 0 2px}.detail-title-row .question-search{flex:1 1 100%;width:100%;margin:0}}
+</style>
+<style>
+    .detail-title-row{position:relative;align-items:flex-start;margin-bottom:17px}
+    .detail-title-row h2{margin:14px 0 0;padding-bottom:18px}
+    #detailTitle::after{display:none}
+    .detail-title-row::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:1px;background:#51544a}
+    .detail-title-row .question-search{margin-top:-12px}
+    @media(max-width:720px){.detail-title-row h2{margin:12px 0 0}.detail-title-row .question-search{margin-top:0}}
+</style>
+<style>
+    @media(min-width:721px){.detail-title-row .question-search{position:absolute;left:58%;top:4px;transform:translateX(-50%);width:min(390px,45%);margin:0}}
+    @media(max-width:720px){.detail-title-row .question-search{position:relative;left:auto;top:auto;transform:none;width:100%;margin:0}}
+</style>
+<style>
+    .modal-scroll{scrollbar-color:#355a30 #a5c68e;scrollbar-width:thin}
+    .modal-scroll::-webkit-scrollbar{width:12px}
+    .modal-scroll::-webkit-scrollbar-track{background:#a5c68e}
+    .modal-scroll::-webkit-scrollbar-thumb{background:#355a30;border:2px solid #a5c68e;border-radius:99px}
+    .modal-scroll::-webkit-scrollbar-thumb:hover{background:#294725}
+</style>
+<style>
+    .modal-foot{justify-content:center}.modal-foot .nav-btn{display:none}
+    .modal{width:min(1200px,100%)}
+    .detail-lead{margin-bottom:40px;padding-bottom:24px}
+    .block{padding:28px 0 32px}
+    .block h3{margin-bottom:15px;color:#f0f0e9}
+    .study-text{border-left:1px solid #46513d;padding-left:14px;line-height:1.85}    .study-estimate{margin:0 0 12px;padding:16px 18px;border:1px solid #3b4335;border-radius:10px;background:#11140f;color:#cecec5;font:13px/1.55 var(--sans)}
+    .study-estimate-top{display:flex;justify-content:center;align-items:center;margin-bottom:10px}.study-estimate-top strong{color:#e8ebdf}
+    .study-estimate-count{margin-top:10px;text-align:center;color:var(--green);font-variant-numeric:tabular-nums}.study-estimate-track{height:6px;border-radius:9px;background:#292d25;overflow:hidden}.study-estimate-track span{display:block;height:100%;border-radius:inherit;background:var(--green);transition:width .2s ease}
+    .image-viewer{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:28px;background:#030403ed;backdrop-filter:blur(5px)}
+    .image-viewer.open{display:flex}.image-viewer-panel{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:96vw;max-height:94vh}
+    .image-viewer-panel img{display:block;max-width:94vw;max-height:86vh;width:auto;height:auto;object-fit:contain;background:#10120f;border:1px solid #34362f;border-radius:8px}
+    .image-viewer-panel p{margin:0;color:#e0e0d8;font-size:13px;text-align:center}
+    .image-viewer-close{position:absolute;top:10px;right:10px;z-index:1;width:38px;height:38px;border:1px solid #55584d;border-radius:50%;background:#11130fe8;color:#fff;font-size:22px;cursor:pointer}
+    @media(max-width:720px){.study-figure img{height:160px}.image-viewer{padding:12px}.image-viewer-panel img{max-width:96vw;max-height:82vh}}
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar"><div class="brand"><span class="brandmark">m</span><span>Maturitní příprava</span></div><span class="course">PT2</span></header>
+    <section class="hero"><div class="hero-copy"><div class="eyebrow">Tvůj osobní studijní přehled</div><h1>Maturitní otázky<span style="color:var(--green)">.</span></h1><p>Dvacet témat na jednom místě.</p></div><div class="searchbox"><label for="searchInput">AI studijní asistent</label><div class="search-field"><span class="search-icon" aria-hidden="true">✳</span><input id="searchInput" type="search" placeholder="Napiš téma a já ho najdu" autocomplete="off" aria-label="Polož otázku k maturitním tématům"><button id="askButton" class="ask-button" type="button" aria-label="Odeslat otázku">↑</button></div><div class="search-results" id="searchResults" role="log" aria-live="polite" aria-label="Odpovědi asistenta"></div></div></section>
+    <div class="toolbar"><div class="section-title">Přehled otázek</div></div>
+    <section class="grid" id="grid" aria-label="Seznam maturitních otázek"></section>
+  </main>
+  <div class="overlay" id="overlay" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <header class="modal-head"><div class="modal-mark"><b>m</b><span>Maturitní otázky <span aria-hidden="true">/</span> <span id="modalCrumb">01</span></span></div><div class="question-search"><input id="questionSearchInput" type="search" placeholder="Hledat v této otázce…" aria-label="Hledat v otevřené otázce"><button id="questionSearchButton" type="button" aria-label="Vyhledat v otázce">⌕</button><span id="questionSearchCount" aria-live="polite"></span></div><button class="close" id="closeBtn" aria-label="Zavřít okno">×</button></header>
+      <div class="modal-scroll" id="modalScroll"><article class="detail" id="detail"></article></div>
+      <footer class="modal-foot"><button class="nav-btn" id="prevBtn">← Předchozí</button><span class="foot-count" id="footCount"></span><button class="nav-btn" id="nextBtn">Další →</button></footer>
+    </section>
+  </div>
+  <div class="image-viewer" id="imageViewer" aria-hidden="true">
+    <div class="image-viewer-panel" role="dialog" aria-modal="true" aria-label="Zvětšený studijní obrázek">
+      <button class="image-viewer-close" id="imageViewerClose" type="button" aria-label="Zavřít zvětšený obrázek">×</button>
+      <img id="imageViewerImage" alt="">
+      <p id="imageViewerCaption"></p>
+    </div>
+  </div>
+  <script>
+    const sections=[['Základní přehled','Vysvětli téma vlastními slovy. Co znamená, k čemu slouží a proč je důležité?'],['Klíčové pojmy','Sepiš důležité pojmy a ke každému krátké vysvětlení.'],['Jak to funguje','Popiš princip, jednotlivé části nebo postup krok za krokem. Přidej souvislosti a případné vzorce.'],['Příklady a využití','Uveď konkrétní příklady, praktické použití nebo ukázku, na které jde téma dobře vysvětlit.'],['Co si zapamatovat','Doplň otázky, na které se tě může komise zeptat, a stručné body k zopakování.']];
+    const topicTitles={1:'Materiály',2:'Vrtáky',3:'Plasty',10:'Nedestruktivní zkoušky',14:'Soustružení',18:'Teorie strojního obrábění'};
+    const topicAuthors={1:'Miroslav Zelinka',14:'Miroslav Zelinka',2:'Vojtěch Pikna',3:'Vojtěch Pikna',10:'Stanislav Hlaváč',18:'Stanislav Hlaváč'};
+    const defaults=Array.from({length:20},(_,i)=>({title:topicTitles[i+1]||`Otázka ${String(i+1).padStart(2,'0')}`,lead:'Studijní materiál k tomuto tématu bude doplněn.',blocks:sections.map(([title,placeholder])=>({title,text:''})),done:false}));
+    const notes=defaults;
+    notes[2].lead='Nový přehled shrnuje polymerní strukturu a vlastnosti plastů, běžné materiály a výrobky, technologie zpracování, obrábění, kontrolu kvality, recyklaci i bezpečnost.';
+    notes[2].blocks=[
+      {title:'Plasty, polymery a základní pojmy',text:`Plasty jsou technické materiály založené na polymerech. Jejich vlastnosti lze upravovat složením směsi, přísadami a výrobním postupem. Mnoho běžných polymerů vychází z petrochemických surovin, například z ropy a zemního plynu; existují také polymery z obnovitelných surovin. Biologický původ sám o sobě neznamená biologickou rozložitelnost.
+
+Základní pojmy:
+• Termoplast – při zahřátí měkne nebo taje a po ochlazení tuhne; tvarování lze opakovat, ale materiál se může tepelně degradovat.
+• Reaktoplast – během vytvrzení nevratně mění strukturu; po vytvrzení se znovu netaví a při vysoké teplotě se rozkládá.
+• Elastomer – pružný materiál, který se po deformaci z velké části vrací do původního tvaru.
+• Kompozit – materiál, v němž polymerní matrice spolupracuje s výztuží, například se skelnými nebo uhlíkovými vlákny.
+• Granulát – drobné částice polymeru, běžná vstupní surovina pro zpracování termoplastů.
+
+Běžné zkratky: PE – polyethylen, PP – polypropylen, PVC – polyvinylchlorid, PS – polystyren, PET – polyethylentereftalát, PA – polyamid a PC – polykarbonát.`},
+      {title:'Struktura polymerů a rozdělení plastů',text:`Vlastnosti polymeru závisejí na délce a uspořádání řetězců, jejich vazbách, krystalinitě, molekulové hmotnosti i přísadách.
+
+• Termoplasty mají převážně lineární nebo větvené řetězce bez trvalé prostorové sítě. Zahřátím měknou či tají, ochlazením tuhnou. Patří sem například PE, PP, PVC, PS, PET, PA a PC.
+• U reaktoplastů se při vytvrzování vytvoří prostorově zesítěná struktura. Po vytvrzení se znovu neroztaví; příkladem jsou epoxidové, fenolformaldehydové a melaminové pryskyřice.
+• Elastomery mají pružné řetězce, které se po deformaci vracejí. Kaučuk se často vulkanizuje na pryž; používají se také silikonové elastomery.
+
+Amorfní termoplasty mají neuspořádané řetězce a při zahřívání měknou v širším teplotním rozmezí. Semikrystalické termoplasty obsahují krystalické oblasti i amorfní část; mívají výraznější teplotu tání a jejich smrštění může být větší a směrově závislé. Zapamatování: termoplast lze opakovaně změkčit, vytvrzený reaktoplast znovu neroztavíme a elastomer je pružný. Opakovaná tavitelnost ovšem neznamená neomezenou recyklovatelnost.`},
+      {title:'Vlastnosti plastů a přísady',text:`Plasty jsou obvykle lehčí než kovy, odolávají korozi a často mají malou tepelnou či elektrickou vodivost. Pevnost, tuhost, houževnatost a teplotní odolnost se výrazně liší podle druhu, teploty, doby zatížení a výroby. Plasty mohou být houževnaté i křehké, při dlouhodobém zatížení mohou téct a teplo či tření je mohou změkčit nebo rozložit. Vodu a některé chemikálie snášejí dobře, jiná rozpouštědla nebo oleje je mohou napadat. UV záření, kyslík a teplo mohou způsobit změnu barvy, křehnutí a ztrátu pevnosti.
+
+Přísady upravují vlastnosti nebo zpracování:
+• plniva a výztuže snižují cenu nebo mění tuhost, pevnost a rozměrovou stabilitu; například skelná vlákna
+• změkčovadla zvyšují ohebnost a měkkost některých směsí, například PVC
+• stabilizátory zpomalují degradaci teplem, světlem nebo oxidací
+• barviva a pigmenty dodávají barvu či kryvost
+• zpomalovače hoření omezují vznícení nebo šíření plamene podle konkrétní formulace
+• maziva a procesní přísady zlepšují tok taveniny, odformování či zpracovatelnost
+
+Dva výrobky ze stejného polymeru mohou mít různé vlastnosti kvůli přísadám, výztuži, orientaci řetězců, procesu a podmínkám použití.`},
+      {title:'Příklady plastů a výrobků',text:`Stejný základní polymer lze podle složení a výroby využít různě. Typické příklady z přehledu:
+• PET – nápojová lahev nebo textilní vlákno; průhlednost a pevnost závisí na konkrétním typu a konstrukci.
+• PE – sáček, fólie či nádoba; lehký, houževnatý a chemicky odolný.
+• PP – potravinová krabička nebo víčko; nízká hustota, odolnost a dobrá únavová životnost při ohýbání.
+• PVC – potrubí a kabelový plášť; lze vyrábět tuhé i měkčené směsi.
+• EPS – ochranný obal nebo tepelná izolace; pěna je lehká a tlumí nárazy či omezuje přenos tepla.
+• PA – ozubené kolo nebo pouzdro; odolnost proti opotřebení a dobré mechanické vlastnosti.
+
+Jde o běžné příklady, nikoli jediné možné použití. Výrobek se volí podle požadovaných vlastností, konstrukce a technologie; samotná značka polymeru nezaručuje stejné chování každého výrobku.`},
+      {title:'Technologie zpracování plastů',text:`Technologie se volí podle skupiny polymeru, tvaru výrobku, velikosti série, přesnosti a ekonomiky. Termoplasty se často zpracovávají jako tavenina, reaktoplasty se při tváření vytvrzují.
+
+• Vstřikování – granulát se roztaví v plastikační jednotce a tavenina se vstříkne do uzavřené formy. Hodí se pro složité výrobky i velké série.
+• Vytlačování (extruze) – tavenina se nepřetržitě protlačuje hubicí; vznikají trubky, profily, fólie nebo desky.
+• Vyfukování – tlak vzduchu roztáhne zahřátý polotovar ke stěnám formy; vyrábějí se duté nádoby.
+• Tvarování za tepla – zahřátá deska či fólie se přitlačí k formě podtlakem, přetlakem nebo mechanicky.
+• Lisování reaktoplastů – dávka se vloží do vyhřáté formy, tlakem vytvaruje a ve formě vytvrdí.
+• Válcování (kalandrování) – plastická směs prochází mezi válci; vyrábějí se například desky a fólie.
+• Pěnění – v polymeru se vytvoří buněčná struktura, která snižuje hustotu a zlepšuje izolační vlastnosti.`},
+      {title:'Princip technologií a názvy výrobků',text:`Při lisování se do vyhřáté formy vloží odměřená dávka prášku, granulátu nebo polotovaru. Po uzavření formy tlak rozvede hmotu do dutiny. Reaktoplast se vytvrdí; termoplast se před otevřením ochladí.
+
+Při vstřikování šnek dopravuje, zahřívá a homogenizuje granulát. Tavenina se vstříkne do uzavřené formy, následuje dotlak a chlazení nebo vytvrzení. Potom se forma otevře a výrobek vyjme. Sledují se teploty, tlak, rychlost plnění, dotlak a doba chlazení.
+
+U vytlačování šnek v extrudéru dopravuje a plastikuje materiál. Hubice určí průřez, po ní následuje kalibrace, chlazení a dělení na délku. Při vyfukování tlak vzduchu roztáhne zahřátý dutý polotovar ke stěnám formy. Při odlévání se kapalná pryskyřice nechá ztuhnout nebo vytvrdit; forma se může pomalu otáčet pro vznik dutého dílu. Zahřátá deska při tvarování kopíruje negativní dutinu formy nebo se napíná přes pozitivní tvar. Výrobek se po ochlazení sejme a často ořízne.
+
+Podle technologie vzniká odlitek, výlisek nebo výstřik. Termoplasty se často dodávají jako granulát, reaktoplastové směsi také jako prášek, pasta či kapalina a kaučukové směsi se následně vulkanizují. Materiály chraňte před vlhkostí a záměnou podle pokynů výrobce.`},
+      {title:'Parametry výroby a typické vady',text:`Při zpracování kontrolujte teplotu materiálu a formy, tlak, rychlost plnění, dobu cyklu, chlazení a vlhkost granulátu. Konkrétní nastavení ověřujte v technickém listu a na zařízení; neexistuje univerzální hodnota pro všechny plasty.
+
+Typické vady a jejich možné příčiny či opatření:
+• nedostříknutí – nízká teplota nebo tlak, krátké plnění či špatné odvzdušnění; zkontrolovat materiál, teplotní profil a parametry stroje
+• otřepy – příliš vysoký tlak, malá uzavírací síla nebo opotřebená forma; prověřit uzavření, tlak a dělicí rovinu
+• propadliny a dutiny – nedostatečný dotlak či chlazení nebo nerovnoměrná tloušťka stěn
+• deformace po vyjmutí – nerovnoměrné chladnutí, smrštění nebo příliš brzké vyhození
+• stříbrné šmouhy či bubliny – vlhký materiál, vzduch nebo degradace taveniny; sušit podle předpisu a ověřit teplotu i odvzdušnění
+• spáleniny – zachycený vzduch, vysoká teplota nebo příliš dlouhá doba setrvání
+
+U vstřikování si zapamatujte cyklus: plastifikace, uzavření formy, vstřik a dotlak, chlazení či vytvrzení, otevření a vyhození. Vady hledejte systematicky; může se kombinovat konstrukce dílu, stav formy, materiál i nastavení procesu.`},
+      {title:'Obrábění a spojování plastů',text:`Plasty lze soustružit, frézovat, vrtat, řezat a brousit. Kvůli nižší tepelné vodivosti a pružnosti se mohou při nevhodném obrábění tavit, mazat, deformovat nebo vytrhávat.
+
+• Používejte ostrý nástroj a vhodnou geometrii; tupý břit zvyšuje tření a teplotu.
+• Obrobek podepřete a upněte bez nadměrného stlačení.
+• Řeznou rychlost a posuv volte podle konkrétního plastu a zajistěte odvod třísky i tepla.
+• U měkkých a houževnatých plastů sledujte dlouhé třísky; zjistěte, zda materiál obsahuje abrazivní výztuž.
+
+Způsoby spojování: svařováním se místně zahřejí vhodné termoplasty (horkým nástrojem, horkým plynem, ultrazvukem nebo třením); lepidlo se volí podle polymeru, povrchu a namáhání; mechanické spoje používají šrouby, západky či nýty a musí počítat s tečením plastu; zalití a laminování se uplatňuje hlavně u pryskyřic a kompozitů. Přílišné tření při obrábění může plast změkčit a zhoršit rozměr i povrch.`},
+      {title:'Kontrola materiálu a kvality výrobku',text:`Před zpracováním ověřte identitu materiálu, šarži, stav granulátu a požadavky na výrobek. U hygroskopických polymerů, například některých polyamidů a polyesterů, může vlhkost při tavení způsobit vady nebo zhoršit vlastnosti. Sušení provádějte podle předpisu konkrétního materiálu, nikoli odhadem.
+
+Kontrola zahrnuje správný druh a dohledatelnost šarže, vlhkost a sušení, rozměry a tvar kvůli smrštění či deformaci, vizuální prohlídku povrchových vad, mechanické zkoušky pevnosti, houževnatosti nebo tvrdosti a funkční zkoušku v provozních podmínkách.
+
+Recyklační kódy a materiálové značky pomáhají s identifikací, ale samy nezaručují, že lze výrobek místně recyklovat. Pro technickou výrobu rozhoduje přesná specifikace polymeru, výztuže, přísad a výkres. Granulát skladujte uzavřený, chraňte před vlhkostí, prachem, teplem a záměnou šarží.`},
+      {title:'Recyklace, životní prostředí a bezpečnost',text:`Nakládání s plastovým odpadem zahrnuje předcházení odpadu, opětovné použití, třídění, recyklaci a další využití. Praktická recyklovatelnost závisí na druhu polymeru, čistotě, barvě, přísadách, konstrukci výrobku a dostupné technologii.
+
+• Opětovné použití – výrobek se používá znovu.
+• Mechanická recyklace – odpad se třídí, čistí, drtí a taví na druhotnou surovinu; znečištění a degradace mohou snížit kvalitu.
+• Chemická recyklace – odpad či polymer se chemicky rozloží na suroviny nebo jiné produkty; přínosy závisejí na konkrétním procesu.
+• Energetické využití – odpad slouží jako zdroj energie, nejde o materiálovou recyklaci.
+• Skládkování – materiál se nevrací do výroby a může dlouhodobě zatěžovat prostředí.
+
+Omezujte zbytečné jednorázové výrobky a třiďte podle místních pravidel. Směsi materiálů a znečištění recyklaci komplikují. Biologický původ a biologická rozložitelnost jsou odlišné vlastnosti.
+
+Při zahřívání či rozkladu plastu mohou vznikat škodlivé výpary: zajistěte odsávání a řiďte se bezpečnostním listem. Používejte ochranné brýle a další předepsané prostředky. Třísky odstraňujte bezpečně, s pryskyřicemi, lepidly a rozpouštědly dodržujte pokyny výrobce a chraňte pokožku. Nezahřívejte neznámý plast v uzavřeném prostoru a nemíchejte odpady neznámého složení.`},
++      {title:'Otázky k maturitě a osnova odpovědi',text:`Procvičte si: Jak se liší amorfní a semikrystalické termoplasty? Jak se plasty dělí podle chování při zahřátí? Jaký je rozdíl mezi termoplastem a reaktoplastem? Uveďte vlastnosti a použití PE, PP, PVC a PET. K čemu slouží přísady? Vysvětlete vstřikování nebo vytlačování. Jak se plasty obrábějí a jaké jsou možnosti jejich recyklace?
+
+Osnova ústní odpovědi:
+1. Stručně definujte plasty a uveďte základní suroviny.
+2. Popište rozdělení podle struktury a chování při zahřívání.
+3. Vysvětlete vlastnosti a vliv přísad.
+4. Uveďte příklady polymerů a výrobků.
+5. Popište vybranou technologii zpracování a její postup.
+6. Zmiňte obrábění, spojování, kontrolu, recyklaci a bezpečnost.
+
+Shrnutí: Plasty jsou materiály založené na polymerech. Dělí se na termoplasty, reaktoplasty a elastomery podle struktury a chování při teple. Jejich vlastnosti upravují přísady a volba technologie. Při návrhu a zpracování je třeba řešit také stárnutí, kvalitu, recyklaci a bezpečnost.`}
+    ];
+    notes[2].figures={
+      1:[{src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDM2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlN0cnVrdHVyYSBwb2x5bWVyxa88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Tcm92bsOhbsOtIHZvbG7DvWNoIHRlcm1vcGxhc3RpY2vDvWNoIMWZZXTEm3pjxa8sIHBydcW+bsSbIHplc8OtdMSbbsO9Y2ggZWxhc3RvbWVyxa8gYSBodXN0xJsgemVzw610xJtuw6kgc3RydWt0dXJ5IHJlYWt0b3BsYXN0xa8uPC9kZXNjPjxyZWN0IHg9IjEiIHk9IjEiIHdpZHRoPSI5OTgiIGhlaWdodD0iMzU4IiByeD0iMTgiIGZpbGw9IiMxMTEzMGYiIHN0cm9rZT0iIzNiNDAzNiIvPjx0ZXh0IHg9IjM2IiB5PSI0NCIgZmlsbD0iI2E3Yzk4ZiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZvbnQtd2VpZ2h0PSI3MDAiPlNUUlVLVFVSQSBQT0xZTUVSxa48L3RleHQ+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDdkOGNiIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTY0IDEwMmwyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNE02NyAxNDlsMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTRNNjcgMTk3bDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0TTM3MSAxMDJsMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTRNMzcxIDE0OWwyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNE0zNzEgMTk3bDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0TTcxMCAxMDJsMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTQgMjQtMTQgMjQgMTRNNzEwIDE0OWwyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNCAyNC0xNCAyNCAxNE03MTAgMTk3bDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0IDI0LTE0IDI0IDE0Ii8+PGcgc3Ryb2tlPSIjYTdjOThmIj48cGF0aCBkPSJNMzk1IDEwMnY0N000NjcgMTM1djQ4TTUzOSAxMDJ2NDdNNjExIDEzNXY0OE03MzQgMTAydjQ3TTc4MiAxMzV2NDhNODMwIDEwMnY0N004NzggMTM1djQ4TTkyNiAxMDJ2NDdNNzU4IDEwMnY0N004MDYgMTM1djQ4TTg1NCAxMDJ2NDdNOTAyIDEzNXY0OCIvPjwvZz48L2c+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjx0ZXh0IHg9IjE5MCIgeT0iMjY0IiBmaWxsPSIjYTdjOThmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNzAwIj5URVJNT1BMQVNUPC90ZXh0Pjx0ZXh0IHg9IjE5MCIgeT0iMjk0IiBmaWxsPSIjYzhjOWJmIiBmb250LXNpemU9IjE1Ij52b2xuw6kgxZlldMSbemNlPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iMjY0IiBmaWxsPSIjYTdjOThmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNzAwIj5FTEFTVE9NRVI8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIyOTQiIGZpbGw9IiNjOGM5YmYiIGZvbnQtc2l6ZT0iMTUiPnBydcW+bsOpIMWZw61ka8OpIHplc8OtxaVvdsOhbsOtPC90ZXh0Pjx0ZXh0IHg9IjgxMCIgeT0iMjY0IiBmaWxsPSIjYTdjOThmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNzAwIj5SRUFLVE9QTEFTVDwvdGV4dD48dGV4dCB4PSI4MTAiIHk9IjI5NCIgZmlsbD0iI2M4YzliZiIgZm9udC1zaXplPSIxNSI+cGV2bsOhIHByb3N0b3JvdsOhIHPDrcWlPC90ZXh0PjwvZz48dGV4dCB4PSIzNiIgeT0iMzM3IiBmaWxsPSIjOWRhMDk1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCI+WmplZG5vZHXFoWVuw6kgc2Now6ltYTsgc2t1dGXEjW7DoSBzdHJ1a3R1cmEgesOhdmlzw60gbmEga29ua3LDqXRuw61tIHBvbHltZXJ1LjwvdGV4dD48L3N2Zz4NCg==',alt:'Schémata řetězcové struktury termoplastu, elastomeru a reaktoplastu',caption:'Řetězce termoplastu, pružně zesítěný elastomer a prostorově zesítěný reaktoplast.',wide:true}],
+      3:[{src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDM2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlDFmcOta2xhZHkgdsO9cm9ia8WvIHogcGxhc3TFrzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPklsdXN0cmFjZSBsYWh2ZSB6IFBFVCwgZsOzbGllIHogUEUsIGtyYWJpxI1reSB6IFBQLCBwb3RydWLDrSB6IFBWQywgcMSbbm92w6lobyBvYmFsdSB6IEVQUyBhIG96dWJlbsOpaG8ga29sYSB6IFBBLjwvZGVzYz48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iOTk4IiBoZWlnaHQ9IjM1OCIgcng9IjE4IiBmaWxsPSIjMTExMzBmIiBzdHJva2U9IiMzYjQwMzYiLz48dGV4dCB4PSIzNiIgeT0iNDQiIGZpbGw9IiNhN2M5OGYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmb250LXdlaWdodD0iNzAwIj5QxZjDjUtMQURZIFbDnVJPQkvFriBaIFBMQVNUxa48L3RleHQ+PGcgZmlsbD0iIzE4MWMxNiIgc3Ryb2tlPSIjYTdjOThmIiBzdHJva2Utd2lkdGg9IjMiPjxyZWN0IHg9IjM1IiB5PSI3MCIgd2lkdGg9IjI5NiIgaGVpZ2h0PSIxMTkiIHJ4PSIxNCIvPjxyZWN0IHg9IjM1MiIgeT0iNzAiIHdpZHRoPSIyOTYiIGhlaWdodD0iMTE5IiByeD0iMTQiLz48cmVjdCB4PSI2NjkiIHk9IjcwIiB3aWR0aD0iMjk2IiBoZWlnaHQ9IjExOSIgcng9IjE0Ii8+PHJlY3QgeD0iMzUiIHk9IjIxMCIgd2lkdGg9IjI5NiIgaGVpZ2h0PSIxMTkiIHJ4PSIxNCIvPjxyZWN0IHg9IjM1MiIgeT0iMjEwIiB3aWR0aD0iMjk2IiBoZWlnaHQ9IjExOSIgcng9IjE0Ii8+PHJlY3QgeD0iNjY5IiB5PSIyMTAiIHdpZHRoPSIyOTYiIGhlaWdodD0iMTE5IiByeD0iMTQiLz48L2c+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDdkOGNiIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE2OCA5OGgyOXYxMmwxMCAxMnY0M3EwIDgtOSA4aC0zMXEtOSAwLTktOHYtNDNsMTAtMTJ6TTE2OCA5OHYtOGgyOXY4TTE3MCAxMTloMjVNNDUwIDEwM2g5OXY2NWgtOTl6TTQ2NiAxMDN2LThoNjd2OE00NTAgMTIwaDk5TTcyOSAxMjNoMTc0bC05IDEzdjM0cTAgNy04IDdINzQ2cS04IDAtOC03di0zNHpNNzIwIDExNGgxOTJ2MTBINzIwek03NTIgMTQ1aDEyN004MSAyNTBoMTkydjM5SDgxek04MSAyNTB2MzlNMTAzIDI1MHYzOU0yNTEgMjUwdjM5TTI3MyAyNTB2MzlNNDQ0IDI0NmgxMTF2NjdINDQ0ek00NjIgMjYzbDcgNC01IDggOSA0LTIgMTBNNTEyIDI1NWwtNCA4IDggNi02IDhNNTM2IDI4NmwtOCAzIDIgMTAtOSA1TTgxNyAyNDVsOS03IDEwIDggMTAtNCA2LTEyIDEyIDEgNCAxMiAxMSAzIDEwLTcgMTAgNy0zIDEyIDcgOSAxMiAxIDQgMTEtOSA4djExbDkgOC00IDExLTEyIDEtNyA5IDMgMTItMTAgNy0xMC03LTExIDMtNCAxMi0xMiAxLTYtMTItMTAtNC0xMCA4LTktNyAyLTEyLTgtOC0xMiAxLTUtMTEgOS04di0xMWwtOS04IDUtMTEgMTItMSA4LTktMi0xMnoiLz48Y2lyY2xlIGN4PSI4NTMiIGN5PSIyODMiIHI9IjE4Ii8+PC9nPjxnIGZpbGw9IiNhN2M5OGYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3IiBmb250LXdlaWdodD0iNzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj48dGV4dCB4PSIxODMiIHk9IjE3NyI+UEVUIMK3IExBSEVWPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iMTc3Ij5QRSDCtyBGw5NMSUU8L3RleHQ+PHRleHQgeD0iODE3IiB5PSIxNzciPlBQIMK3IEtSQUJJxIxLQTwvdGV4dD48dGV4dCB4PSIxODMiIHk9IjMxOCI+UFZDIMK3IFBPVFJVQsONPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iMzE4Ij5FUFMgwrcgT0JBTCAvIElaT0xBQ0U8L3RleHQ+PHRleHQgeD0iODE3IiB5PSIzMTgiPlBBIMK3IE9aVUJFTsOJIEtPTE88L3RleHQ+PC9nPjwvc3ZnPg0K',alt:'Příklady plastových výrobků z PET, PE, PP, PVC, EPS a PA',caption:'Příklady výrobků z běžných polymerů uvedené v přehledu.',wide:true}],
+      4:[{src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDM2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlZzdMWZaWtvdsOhbsOtIGEgdnl0bGHEjW92w6Fuw60gcGxhc3TFrzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlZzdMWZaWtvdmFjw60gamVkbm90a2EgZG9wcmF2dWplIHRhdmVuaW51IGRvIHV6YXbFmWVuw6kgZm9ybXksIGV4dHJ1ZMOpciB0bGHEjcOtIHRhdmVuaW51IHNrcnogaHViaWNpIGRvIHNvdXZpc2zDqWhvIHByb2ZpbHUuPC9kZXNjPjxyZWN0IHg9IjEiIHk9IjEiIHdpZHRoPSI5OTgiIGhlaWdodD0iMzU4IiByeD0iMTgiIGZpbGw9IiMxMTEzMGYiIHN0cm9rZT0iIzNiNDAzNiIvPjx0ZXh0IHg9IjM2IiB5PSI0NCIgZmlsbD0iI2E3Yzk4ZiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZvbnQtd2VpZ2h0PSI3MDAiPkRWxJogWsOBS0xBRE7DjSBURUNITk9MT0dJRTwvdGV4dD48cmVjdCB4PSIzNSIgeT0iNjYiIHdpZHRoPSI0NTAiIGhlaWdodD0iMjUwIiByeD0iMTQiIGZpbGw9IiMxNzFhMTUiIHN0cm9rZT0iIzNiNDAzNiIvPjxyZWN0IHg9IjUxNSIgeT0iNjYiIHdpZHRoPSI0NTAiIGhlaWdodD0iMjUwIiByeD0iMTQiIGZpbGw9IiMxNzFhMTUiIHN0cm9rZT0iIzNiNDAzNiIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q3ZDhjYiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik03NiAxMThoNjZsLTEyIDM1SDg4ek05MSAxNTN2MjVoMzZ2LTI1TTgwIDE3OWgyMjR2NTBIODB6TTkzIDIwNGgxNzBNMTI4IDE5MmwyMCAxMi0yMCAxMk0xNzEgMTkybDIwIDEyLTIwIDEyTTIxNCAxOTJsMjAgMTItMjAgMTJNMzA0IDE5MWg0NGwyMiAxMy0yMiAxM2gtNDR6TTM3MCAxNTVoMzV2OTloLTM1ek00MjQgMTU1aDM1djk5aC0zNXpNNDA1IDIwNGgxOU01NTAgMTE4aDYwbC0xMSAzNWgtMzh6TTU2NiAxNTN2MjVoMzF2LTI1TTU0OCAxNzloMjYydjUwSDU0OHpNNTYwIDIwNGgyMDhNNTc4IDE5MmwyMCAxMi0yMCAxMk02MjIgMTkybDIwIDEyLTIwIDEyTTY2NiAxOTJsMjAgMTItMjAgMTJNNzEwIDE5MmwyMCAxMi0yMCAxMk04MTAgMTkwaDI4bDE4IDE0LTE4IDE0aC0yOHpNODU2IDIwNGg4MCIvPjwvZz48ZyBmaWxsPSIjYTdjOThmIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjcwMCI+PHRleHQgeD0iODIiIHk9IjEwOCI+R1JBTlVMw4FUPC90ZXh0Pjx0ZXh0IHg9IjM3OCIgeT0iMTQzIj5VWkFWxZhFTsOBIEZPUk1BPC90ZXh0Pjx0ZXh0IHg9IjU1NiIgeT0iMTA4Ij5HUkFOVUzDgVQ8L3RleHQ+PHRleHQgeD0iODQxIiB5PSIxODMiPkhVQklDRTwvdGV4dD48L2c+PGcgZmlsbD0iI2U4ZTdkZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjx0ZXh0IHg9IjI2MCIgeT0iMjg0Ij5WU1TFmElLT1bDgU7DjTwvdGV4dD48dGV4dCB4PSI3MzgiIHk9IjI4NCI+VllUTEHEjE9Ww4FOw408L3RleHQ+PC9nPjx0ZXh0IHg9IjYwIiB5PSIzMDYiIGZpbGw9IiNhYWE5OWYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0Ij5Ew6F2a2EgdGF2ZW5pbnkgemFwbG7DrSBmb3JtdTwvdGV4dD48dGV4dCB4PSI1NDYiIHk9IjMwNiIgZmlsbD0iI2FhYTk5ZiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlRhdmVuaW5hIHByxa9ixJvFvm7EmyB0dm/FmcOtIHByb2ZpbDwvdGV4dD48L3N2Zz4NCg==',alt:'Schéma vstřikování a vytlačování plastů',caption:'Vstřikování do uzavřené formy a kontinuální vytlačování přes hubici.',wide:true}]
+    };
+    notes[1].lead='Přehled konstrukce a použití vrtáků, jejich upnutí a správného vrtání na soustruhu. Součástí jsou zásady volby nástroje, řezné podmínky, údržba i bezpečnost.';
+    notes[1].blocks=[
+      {title:'Princip vrtání na soustruhu',text:`Při vrtání na soustruhu se otáčí obrobek upnutý ve vřetenu, zatímco vrták je upnutý v koníku a neotáčí se. Pinola koníku posouvá vrták v ose obrobku do materiálu. Osy vřetena a vrtáku musí být souosé; správně seřízený koník proto zásadně ovlivňuje přesnost otvoru.
+
+Soustruh se používá zejména pro vrtání otvorů do čel rotujících součástí. Vrták musí být pevně a souose upnutý, obrobek bezpečně sevřený ve sklíčidle a koník zajištěný na loži. Při hlubších otvorech je nutné pravidelně přerušovat posuv a odvádět třísky.`},
+      {title:'Konstrukce šroubovitého vrtáku',text:`Běžný šroubovitý vrták se skládá ze stopky, krčku a pracovní části zakončené hrotem.
+
+• Stopka slouží k upnutí; bývá válcová nebo kuželová (Morse).
+• Krček spojuje stopku s pracovní částí a může nést označení nástroje.
+• Pracovní část má dvě šroubovité drážky. Ty vytvářejí řezné hrany a odvádějí třísky z otvoru.
+• Hrot tvoří dvě hlavní břity a příčné ostří. Oba hlavní břity mají být stejně dlouhé a souměrné vůči ose.
+• Jádro uprostřed vrtáku zajišťuje jeho pevnost; směrem ke stopce se obvykle zesiluje.
+
+Drážky a jejich geometrie ovlivňují řezání, odvod třísek i tuhost nástroje. Vrták s dlouhou pracovní částí je méně tuhý a snadněji se vychýlí než krátký vrták.`},
+      {title:'Geometrie a úhly vrtáku',text:`Řeznou geometrii tvoří zejména úhel hrotu, úhel čela a úhel hřbetu. Úhel špičky běžného vrtáku pro ocel bývá přibližně 118°. Pro jiné materiály a nástroje se geometrie může lišit; při broušení je důležité zachovat souměrnost obou břitů.
+
+Oba hlavní břity mají mít stejnou délku a stejný úhel. Nesouměrně nabroušený vrták řeže převážně jedním břitem, otvor může být větší než jmenovitý průměr, nástroj se zahřívá a rychleji opotřebuje. Příčné ostří leží uprostřed hrotu a při vrtání materiál spíše vytlačuje než účinně řeže.`},
+      {title:'Materiály vrtáků a povlaky',text:`Materiál nástroje se volí podle obráběného materiálu, požadované životnosti a řezných podmínek.
+
+• Nástrojová uhlíková ocel je levná, ale má nižší tepelnou odolnost; hodí se pro nenáročné práce a nižší rychlosti.
+• Rychlořezná ocel (HSS) je běžná univerzální volba. Zachovává tvrdost i při zahřátí a používá se na oceli i řadu dalších kovů.
+• Kobaltová rychlořezná ocel (HSS-Co) lépe snáší vyšší teploty a hodí se například pro nerezové a pevnější materiály.
+• Slinutý karbid je velmi tvrdý a umožňuje vyšší řezné rychlosti, ale je křehčí a citlivější na rázy a chvění. Vyžaduje tuhé upnutí a stabilní podmínky.
+
+Povlaky, například nitrid titanu (TiN), mohou snížit tření, omezit opotřebení a zvýšit životnost. Povlak nezachrání tupý nebo nesprávně zvolený vrták. U hliníku, plastů, dřeva a zdiva se volí nástroj s geometrií určenou přímo pro daný materiál; do zdiva se používá vrták s tvrdokovovým plátkem.`},
+      {title:'Druhy vrtáků a upnutí',text:`Nejčastějšími vrtáky jsou šroubovité vrtáky. Krátké vrtáky jsou tužší a vhodné pro přesné vedení, dlouhé vrtáky dosáhnou do hlubších míst, ale snáze se prohnou. Středicí vrták vytvoří krátké vodicí zahloubení, které pomáhá navést následný vrták.
+
+Válcová stopka se obvykle upíná do sklíčidla. Kuželová stopka Morse se upíná přímo do odpovídajícího kužele pinoly nebo do redukčního pouzdra. Kuželové plochy musejí být čisté a nepoškozené. K vyražení kuželového nástroje z pinoly se používá vyrážecí klín.
+
+Vrták se upíná za stopku. Čelisti sklíčidla nesmějí svírat drážky ani pracovní část, protože by se nástroj mohl uvolnit nebo poškodit. Po upnutí zkontrolujte pevnost a souosost nástroje.`},
+      {title:'Postup vrtání na soustruhu',text:`1. Zkontrolujte vrták, jeho ostří, stopku a vhodnost pro obráběný materiál. Zvolte rychlost, posuv a případné chlazení.
+2. Obrobek pevně upněte do sklíčidla. Odstraňte klíč sklíčidla a ověřte, že se obrobek nemůže uvolnit.
+3. Vyrovnejte koník s osou vřetena, posuňte jej k obrobku a zajistěte na loži.
+4. Vložte čistý vrták do pinoly koníku (případně přes sklíčidlo či pouzdro) a bezpečně ho upněte.
+5. Je-li třeba přesnější navedení, nejprve vytvořte středicí důlek středícím vrtákem.
+6. Zapněte vřeteno na zvolený počet otáček. Vrták přibližujte ručním posuvem pinoly plynule a v ose.
+7. U hlubšího otvoru posuv přerušujte, vrták povytáhněte a umožněte odvod třísek. Při čištění třísek stroj zastavte; třísky neodstraňujte rukou.
+8. Po dosažení hloubky vrták vytáhněte, zastavte stroj a zkontrolujte otvor i nástroj.
+
+Při vrtání s protáčejícím se obrobkem je vrták v koníku nehybný v otáčení a koník poskytuje pouze osový posuv. Nepoužívejte sílu, která by nástroj ohýbala nebo obrobek vytahovala z upnutí.`},
+      {title:'Řezné podmínky a výpočet otáček',text:`Základní řezné podmínky jsou řezná rychlost v, otáčky vřetena n a posuv f. Řezná rychlost závisí na materiálu obrobku, materiálu a průměru vrtáku a doporučení výrobce. Posuv f se u vrtání udává zpravidla v milimetrech na jednu otáčku; příliš velký posuv přetěžuje břity, příliš malý může způsobit tření.
+
+Pro výpočet otáček platí:
+n = [FRACTION] [m/min]
+
+Příklad z podkladů: vrták D = 10 mm, doporučená v = 25 m/min.
+n ≈ 318 × 25 / 10 = 795 min⁻¹, tedy přibližně 796 ot/min.
+Pokud soustruh nemá přesně tuto hodnotu, zvolí se nejbližší nižší dostupný stupeň, například 710 ot/min.
+
+Rychlost posuvu pinoly lze odhadnout vztahem vf = f × n. Při f = 0,15 mm/ot a n = 710 min⁻¹ vychází vf = 106,5 mm/min. Při práci je nutné respektovat tabulky výrobce, tuhost soustavy, chlazení a skutečný stav nástroje; uvedené hodnoty jsou pouze názorný příklad.`,formula:{numerator:'v × 1000',denominator:'π × D'}},
+      {title:'Volba, údržba a ostření',text:`Pro běžnou ocel se často volí HSS vrták, pro nerez HSS-Co a pro tuhé obrábění a vyšší rychlosti karbidový nástroj. U hliníku a plastů pomáhá vhodná ostřejší geometrie a dobrý odvod třísek; materiál může mít jiné požadavky na mazání či chlazení. Vždy vycházejte z doporučení výrobce nástroje.
+
+Vrtáky ukládejte tak, aby se ostří vzájemně nedotýkala. Před použitím ověřte, zda není vrták tupý, prasklý, ohnutý nebo poškozený. Tupý vrták zvyšuje řezné síly a teplotu, proto se má včas nabrousit nebo vyměnit.
+
+Při ručním ostření je nutné zachovat stejnou délku a úhel obou hlavních břitů a přiměřený hřbet. Vrták se přikládá k brusnému kotouči plynule; nepřehřívejte jej a při potřebě jej ochlazujte. Po nabroušení zkontrolujte souměrnost hrotu. Přesné ostření vyžaduje zkušenost a vhodné pomůcky.`},
+      {title:'Typické závady a jejich příčiny',text:`• Otvor je větší nebo nesouměrný: zkontrolujte souměrnost břitů, stav vrtáku, házení sklíčidla a souosost koníku.
+• Vrták se rychle tupí nebo přehřívá: může být zvolena příliš vysoká řezná rychlost, nevhodný nástroj, nedostatečné chlazení nebo tupé ostří.
+• Vrták vibruje či se vychyluje: zkraťte vyložení, použijte tužší a kratší vrták, zlepšete upnutí obrobku a nástroje a zkontrolujte souosost.
+• Třísky se hromadí v otvoru: u hlubokého vrtání přerušujte posuv a zajistěte bezpečný odvod třísek.
+• Nástroj se láme: příčinou může být špatné upnutí, nesouosost, příliš velký posuv, zablokované třísky nebo ráz do křehkého karbidového nástroje.`},
+      {title:'Bezpečnost práce a osnova odpovědi',text:`Před spuštěním odstraňte klíč sklíčidla, zkontrolujte upnutí obrobku i vrtáku a zajistěte koník. Používejte ochranné brýle a přiléhavý oděv; dlouhé vlasy a volné části oděvu zabezpečte. U rotujícího vřetena se nedotýkejte obrobku ani třísek, nepoužívejte rukavice a neměřte. Třísky odstraňujte háčkem nebo štětcem až po zastavení stroje. Při výměně nástroje či čištění stroj zastavte.
+
+U ústní zkoušky postupujte od účelu a principu vrtání, přes části vrtáku a jeho geometrii k materiálům, upnutí a pracovnímu postupu. Poté vysvětlete volbu řezné rychlosti a výpočet otáček, údržbu, typické závady a zásady bezpečnosti.
+
+Kontrolní otázky: Která část vrtáku odvádí třísky? Jak se liší válcová a Morse stopka? Proč musí být břity souměrné? Jak vypočítáte otáčky pro daný průměr a řeznou rychlost? Proč se u hlubokého otvoru přerušuje posuv? Jak bezpečně odstraníte třísky?`}
+    ];
+    notes[1].figures={
+      0:[{src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDI5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5WcnTDoW7DrSBuYSBzb3VzdHJ1aHU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5PYnJvYmVrIHVwbnV0w70gdmUgdsWZZXRlbnUgc2Ugb3TDocSNw60uIFZydMOhayB2IHBpbm9sZSBrb27DrWt1IHNlIG5lb3TDocSNw60gYSBwb3NvdXbDoSBzZSBkbyBvc3kgb2Jyb2JrdS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iMTAiIG1hcmtlckhlaWdodD0iMTAiIHJlZlg9IjgiIHJlZlk9IjUiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCAxMCA1IDAgMTBaIiBmaWxsPSIjYTdjOThmIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0iYXJyb3cyIiBtYXJrZXJXaWR0aD0iMTAiIG1hcmtlckhlaWdodD0iMTAiIHJlZlg9IjgiIHJlZlk9IjUiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCAxMCA1IDAgMTBaIiBmaWxsPSIjZDdkOGNiIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iOTk4IiBoZWlnaHQ9IjI4OCIgcng9IjE4IiBmaWxsPSIjMTExMzBmIiBzdHJva2U9IiMzYjQwMzYiLz4KPHRleHQgeD0iNDAiIHk9IjQzIiBmaWxsPSIjYTdjOThmIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjcwMCI+VlJUw4FOw40gTkEgU09VU1RSVUhVPC90ZXh0Pgo8bGluZSB4MT0iOTUiIHkxPSIxNTgiIHgyPSI5MDYiIHkyPSIxNTgiIHN0cm9rZT0iIzcwNzM2NyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSIxMCA4Ii8+CjwhLS0gc3BpbmRsZSBhbmQgY2h1Y2sgLS0+CjxwYXRoIGQ9Ik03MCAxMDFoMTEwdjExNEg3MHoiIGZpbGw9IiMyNDI4MjAiIHN0cm9rZT0iI2E3Yzk4ZiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTE4MCAxMTVoNDh2ODZoLTQ4eiIgZmlsbD0iIzM0MzkyZiIgc3Ryb2tlPSIjZDdkOGNiIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNMjI4IDEyOWgxNjV2NThIMjI4eiIgZmlsbD0iIzY4NzA1ZiIgc3Ryb2tlPSIjZDdkOGNiIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNMzkzIDE0NGgyNWwyMCAxNC0yMCAxNGgtMjV6IiBmaWxsPSIjYTdjOThmIi8+CjxwYXRoIGQ9Ik0xMDQgODVhNzMgNzMgMCAwIDEgOTggMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E3Yzk4ZiIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjcwIiB5PSIyNDgiIGZpbGw9IiNlOGU3ZGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3Ij5WxZlldGVubyBhIHNrbMOtxI1pZGxvPC90ZXh0Pjx0ZXh0IHg9IjI1MyIgeT0iMjI0IiBmaWxsPSIjZThlN2RlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyI+T3TDocSNZWrDrWPDrSBzZSBvYnJvYmVrPC90ZXh0Pgo8IS0tIGRyaWxsIGFuZCB0YWlsc3RvY2sgLS0+CjxwYXRoIGQ9Ik00MzggMTUxaDI1NmwzNCA3LTM0IDdINDM4eiIgZmlsbD0iI2Q3ZDhjYiIgc3Ryb2tlPSIjYTdjOThmIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNzI4IDEwNmgxMTRsNjIgMzB2NDRsLTYyIDMwSDcyOGwtMjQtMTh2LTY4eiIgZmlsbD0iIzI0MjgyMCIgc3Ryb2tlPSIjYTdjOThmIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNODE0IDEyNWg5MHY2NmgtOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzcwNzM2NyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxsaW5lIHgxPSI2NTciIHkxPSI5NiIgeDI9IjQ3NSIgeTI9Ijk2IiBzdHJva2U9IiNhN2M5OGYiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI0ODIiIHk9IjgzIiBmaWxsPSIjYTdjOThmIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCI+b3NvdsO9IHBvc3V2IHBpbm9seTwvdGV4dD4KPHRleHQgeD0iNDY3IiB5PSIyMjQiIGZpbGw9IiNlOGU3ZGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3Ij5WcnTDoWsg4oCTIG5lb3TDocSNw60gc2U8L3RleHQ+PHRleHQgeD0iNzU0IiB5PSIyNDgiIGZpbGw9IiNlOGU3ZGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3Ij5Lb27DrWs8L3RleHQ+Cjx0ZXh0IHg9IjQyIiB5PSIyNzQiIGZpbGw9IiNhN2M5OGYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE1Ij5Pc3kgdsWZZXRlbmEgYSB2cnTDoWt1IG11c8OtIGLDvXQgc291b3PDqTsgb2Jyb2JlayBpIGtvbsOtayBtdXPDrSBiw710IGJlenBlxI1uxJsgemFqacWhdMSbbsOpLjwvdGV4dD4KPC9zdmc+DQo=',alt:'Schéma vrtání na soustruhu: obrobek se otáčí, vrták v koníku se posouvá do osy',caption:'Vrtání na soustruhu: otáčí se obrobek, vrták se posouvá pinolou koníku.',wide:true}],
+      1:[{src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDI5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj7EjMOhc3RpIMWhcm91Ym92aXTDqWhvIHZydMOha3U8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5TY2hlbWF0aWNrw70gcG9obGVkIG5hIMWhcm91Ym92aXTDvSB2cnTDoWs6IHbDoWxjb3bDoSBzdG9wa2EsIHByYWNvdm7DrSDEjcOhc3Qgc2UgxaFyb3Vib3ZpdMO9bWkgZHLDocW+a2FtaSBhIGhyb3Qgc2UgZHbEm21hIGhsYXZuw61taSBixZlpdHkuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjEwIiBtYXJrZXJIZWlnaHQ9IjEwIiByZWZYPSI4IiByZWZZPSI1IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDAgMTAgNSAwIDEwWiIgZmlsbD0iI2E3Yzk4ZiIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9Ijk5OCIgaGVpZ2h0PSIyODgiIHJ4PSIxOCIgZmlsbD0iIzExMTMwZiIgc3Ryb2tlPSIjM2I0MDM2Ii8+Cjx0ZXh0IHg9IjQwIiB5PSI0MyIgZmlsbD0iI2E3Yzk4ZiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiPsWgUk9VQk9WSVTDnSBWUlTDgUsg4oCTIFrDgUtMQUROw40gxIzDgVNUSTwvdGV4dD4KPCEtLSBib2R5IC0tPgo8cGF0aCBkPSJNODAgMTIxaDE4MHY1MEg4MHEtMTgtMjUgMC01MHoiIGZpbGw9IiM2ZDc1NjMiIHN0cm9rZT0iI2Q3ZDhjYiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTI2MCAxMjFoNTIwdjUwSDI2MHoiIGZpbGw9IiM0YzU0NDciIHN0cm9rZT0iI2Q3ZDhjYiIgc3Ryb2tlLXdpZHRoPSIzIi8+CjwhLS0gc3BpcmFsIGZsdXRlIHJpYmJvbnMgLS0+CjxwYXRoIGQ9Ik0yODUgMTI2YzU1IDAgNDUgNDAgMTAwIDQwczQ1LTQwIDEwMC00MCA0NSA0MCAxMDAgNDAgNDUtNDAgMTAwLTQwIDQ1IDQwIDc1IDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNhN2M5OGYiIHN0cm9rZS13aWR0aD0iMTIiIG9wYWNpdHk9Ii45NSIvPgo8cGF0aCBkPSJNMjg1IDE2NmM1NSAwIDQ1LTQwIDEwMC00MHM0NSA0MCAxMDAgNDAgNDUtNDAgMTAwLTQwIDQ1IDQwIDEwMCA0MCA0NS00MCA3NS00MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjIyNzFmIiBzdHJva2Utd2lkdGg9IjEwIi8+CjwhLS0gbmVjayBhbmQgcG9pbnQgLS0+CjxwYXRoIGQ9Ik03ODAgMTIxaDQydjUwaC00MnoiIGZpbGw9IiM3MzdiNjgiIHN0cm9rZT0iI2Q3ZDhjYiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTgyMiAxMjFsMTA0IDI1LTEwNCAyNXoiIGZpbGw9IiNhN2M5OGYiIHN0cm9rZT0iI2Q3ZDhjYiIgc3Ryb2tlLXdpZHRoPSIzIi8+PGxpbmUgeDE9IjgyMiIgeTE9IjEyMSIgeDI9IjgyMiIgeTI9IjE3MSIgc3Ryb2tlPSIjZThlN2RlIiBzdHJva2Utd2lkdGg9IjMiLz4KPCEtLSBsYWJlbHMgLS0+Cjx0ZXh0IHg9IjExMiIgeT0iMjE2IiBmaWxsPSIjZThlN2RlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyI+U3RvcGthPC90ZXh0PjxsaW5lIHgxPSIxNTQiIHkxPSIyMDQiIHgyPSIxNTQiIHkyPSIxNzUiIHN0cm9rZT0iI2E3Yzk4ZiIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIzNzciIHk9IjIxNiIgZmlsbD0iI2U4ZTdkZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTciPlByYWNvdm7DrSDEjcOhc3QgYSDFoXJvdWJvdml0w6kgZHLDocW+a3k8L3RleHQ+PGxpbmUgeDE9IjUyMCIgeTE9IjIwMSIgeDI9IjUyMCIgeTI9IjE3NCIgc3Ryb2tlPSIjYTdjOThmIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9Ijc5MCIgeT0iMjE2IiBmaWxsPSIjZThlN2RlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyI+S3LEjWVrPC90ZXh0PjxsaW5lIHgxPSI4MTIiIHkxPSIyMDAiIHgyPSI4MTIiIHkyPSIxNzUiIHN0cm9rZT0iI2E3Yzk4ZiIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI4NDQiIHk9Ijg5IiBmaWxsPSIjYTdjOThmIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9IjcwMCI+SHJvdCBhIGhsYXZuw60gYsWZaXR5PC90ZXh0PjxsaW5lIHgxPSI4NzciIHkxPSI5NiIgeDI9Ijg5NSIgeTI9IjEyMiIgc3Ryb2tlPSIjYTdjOThmIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9IjQwIiB5PSIyNjciIGZpbGw9IiNhN2M5OGYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE1Ij5EcsOhxb5reSB0dm/FmcOtIMWZZXpuw6kgaHJhbnkgYSBvZHbDoWTEm2rDrSB0xZnDrXNreTsgb2JhIGhsYXZuw60gYsWZaXR5IG1hasOtIGLDvXQgc291bcSbcm7DqS48L3RleHQ+Cjwvc3ZnPg0K',alt:'Schéma šroubovitého vrtáku s vyznačenou stopkou, pracovní částí a hrotem',caption:'Základní části šroubovitého vrtáku.',wide:true}]
+    };
+    const grid=document.getElementById('grid'),overlay=document.getElementById('overlay'),detail=document.getElementById('detail'),questionSearchBox=document.querySelector('.question-search'),imageViewer=document.getElementById('imageViewer'),imageViewerImage=document.getElementById('imageViewerImage'),imageViewerCaption=document.getElementById('imageViewerCaption');let active=0,lastFocus=null,imageViewerReturnFocus=null;
+    function openImageViewer(item,trigger){imageViewerReturnFocus=trigger;imageViewerImage.src=item.src;imageViewerImage.alt=item.alt;imageViewerCaption.textContent=item.caption;imageViewer.classList.add('open');imageViewer.setAttribute('aria-hidden','false');document.getElementById('imageViewerClose').focus()}
+    function closeImageViewer(){imageViewer.classList.remove('open');imageViewer.setAttribute('aria-hidden','true');imageViewerImage.removeAttribute('src');if(imageViewerReturnFocus&&imageViewerReturnFocus.isConnected)imageViewerReturnFocus.focus()}
+    document.getElementById('imageViewerClose').addEventListener('click',closeImageViewer);imageViewer.addEventListener('click',e=>{if(e.target===imageViewer)closeImageViewer()});    function renderGrid(){grid.innerHTML='';notes.forEach((n,i)=>{const b=document.createElement('button');b.className='card';b.type='button';b.innerHTML=`<span class="card-top"><span class="number">${String(i+1).padStart(2,'0')}</span><span class="status"></span></span><div class="card-title-group"><h2></h2><span class="card-author"></span></div><span class="card-foot"><span class="arrow">↗</span></span>`;b.querySelector('.status').textContent='';b.querySelector('h2').textContent=n.title;const author=topicAuthors[i+1]||'';b.querySelector('.card-author').textContent=author;b.querySelector('.card-author').hidden=!author;b.setAttribute('aria-label',`${n.title}${author?`, autor ${author}`:''}`);b.addEventListener('click',()=>openQuestionModal(i,b));grid.appendChild(b)})}
+    function buildStudyEstimate(n){
+      const words=n.blocks.reduce((sum,block)=>sum+(block.text.trim()?block.title.trim().split(/\s+/u).length+block.text.trim().split(/\s+/u).length:0),0);
+      const target=1500,percent=Math.min(100,Math.round(words/target*100));
+      const panel=document.createElement('aside');panel.className='study-estimate';panel.dataset.searchExclude='true';
+      panel.innerHTML=`<div class="study-estimate-top"><strong>Počet slov</strong></div><div class="study-estimate-track" role="progressbar" aria-label="Rozsah zápisků vůči cíli 1500 slov" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${Math.min(words,target)}"><span style="width:${percent}%"></span></div><div class="study-estimate-count">${words.toLocaleString('cs-CZ')} / ${target.toLocaleString('cs-CZ')} slov</div>`;
+      return panel;
+    }    function renderDetail(){const n=notes[active];if(typeof questionSearchInput!=='undefined'){questionSearchInput.value='';questionSearchCount.textContent='';questionSearchCount.hidden=true}document.getElementById('modalCrumb').textContent=String(active+1).padStart(2,'0');document.getElementById('footCount').textContent=`${String(active+1).padStart(2,'0')} / 20`;document.getElementById('prevBtn').disabled=active===0;document.getElementById('nextBtn').disabled=active===19;detail.innerHTML='';const kicker=document.createElement('div');kicker.className='detail-kicker';kicker.dataset.searchExclude='true';kicker.textContent=`Otázka ${String(active+1).padStart(2,'0')} · PT2`;const title=document.createElement('h2');title.id='detailTitle';title.dataset.searchExclude='true';title.textContent=n.title;const titleRow=document.createElement('div');titleRow.className='detail-title-row';titleRow.append(title,questionSearchBox);const lead=document.createElement('div');lead.className='detail-lead';lead.textContent=n.lead;detail.append(kicker,titleRow,lead);n.blocks.forEach((block,j)=>{if(!block.text.trim())return;const section=document.createElement('section');section.className='block';const h=document.createElement('h3');h.textContent=block.title;const p=document.createElement('div');p.className='study-text';p.textContent=block.text||'Studijní materiál k této části bude doplněn.';if(block.formula){const parts=block.text.split('[FRACTION]');if(parts.length===2){p.textContent=parts[0];const frac=document.createElement('span');frac.className='math-fraction';frac.setAttribute('role','img');frac.setAttribute('aria-label',block.formula.numerator+' děleno '+block.formula.denominator);const top=document.createElement('span');top.textContent=block.formula.numerator;const bottom=document.createElement('span');bottom.textContent=block.formula.denominator;frac.append(top,bottom);p.append(frac,document.createTextNode(parts[1]))}}section.append(h,p);const figures=n.figures&&n.figures[j]||[];if(figures.length){const gallery=document.createElement('div');gallery.className='study-figures';figures.forEach(item=>{const figureEl=document.createElement('figure');figureEl.className='study-figure';figureEl.classList.toggle('wide',!!item.wide);const imageButton=document.createElement('button');imageButton.type='button';imageButton.className='study-image-open';imageButton.setAttribute('aria-label','Zvětšit obrázek: '+item.caption);imageButton.addEventListener('click',()=>openImageViewer(item,imageButton));const imageEl=document.createElement('img');imageEl.src=item.src;imageEl.alt=item.alt;imageEl.loading='lazy';imageButton.append(imageEl);figureEl.append(imageButton);const captionEl=document.createElement('figcaption');captionEl.textContent=item.caption;figureEl.append(captionEl);gallery.append(figureEl)});section.append(gallery)}detail.append(section)});detail.append(buildStudyEstimate(n));document.getElementById('modalScroll').scrollTop=0}
+    function close(){overlay.classList.remove('open');document.body.style.overflow='';if(lastFocus&&typeof lastFocus.focus==='function')lastFocus.focus()}
+    const searchInput=document.getElementById('searchInput'),searchResults=document.getElementById('searchResults');
+    const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('cs');
+    const conversation=[];const searchHistory=[];
+    function ask(){const question=searchInput.value.trim();if(!question)return;searchHistory.unshift(question);if(searchHistory.length>3)searchHistory.length=3;searchInput.value='';const stop=new Set(['co','je','jsou','to','se','na','do','v','ve','z','ze','a','i','o','u','s','k','ke','jak','jaky','jaka','jake','mi','me','pro','podle','ktera','ktery','ktere','muzes','vysvetli','popis','rekni','prosím','prosim']);const terms=normalize(question).split(/[^a-z0-9]+/).filter(t=>t.length>1&&!stop.has(t));const ranked=[];notes.forEach((n,i)=>{n.blocks.forEach((b,j)=>{const text=`${b.title} ${b.text}`;const hay=normalize(text);const score=terms.reduce((sum,t)=>sum+(hay.includes(t)?(hay.split(t).length-1):0),0);if(score>0&&b.text.trim())ranked.push({i,j,title:n.title,section:b.title,text:b.text,score})})});ranked.sort((a,b)=>b.score-a.score);const turn={question,results:ranked.slice(0,2)};conversation.push(turn);if(conversation.length>1)conversation.shift();renderAnswers();setTimeout(()=>{const index=conversation.indexOf(turn);if(index>=0){conversation.splice(index,1);if(conversation.length)renderAnswers();else{searchResults.innerHTML='';searchResults.classList.remove('show')}}},15000)}
+    function renderAnswers(){searchResults.innerHTML='';conversation.slice().reverse().forEach(turn=>{const message=document.createElement('div');message.className='assistant-message';const q=document.createElement('div');q.className='assistant-question';q.textContent=`Otázka: ${turn.question}`;const answer=document.createElement('div');answer.className='assistant-answer';const greeting=/^(ahoj|cau|cus|hi|hello|dobry den)$/i.test(normalize(turn.question).trim());if(greeting){answer.textContent='Ahoj! Napiš mi otázku k maturitním tématům a já zkusím najít odpověď v materiálech na tomto webu.'}else if(!turn.results.length){answer.className='assistant-answer assistant-empty';answer.textContent='Slovo či věta nenalezena nebo špatně napsána.'}else{turn.results.forEach(r=>{const source=document.createElement('div');source.className='assistant-source';const openLink=document.createElement('button');openLink.type='button';openLink.textContent=`Otázka ${String(r.i+1).padStart(2,'0')} · ${r.title} — ${r.section}`;openLink.addEventListener('click',()=>openQuestionModal(r.i,null,r.j,turn.question));source.append(openLink);answer.append(source)})}message.append(q,answer);searchResults.append(message)});searchResults.classList.add('show');searchResults.scrollTop=0}    document.getElementById('askButton').addEventListener('click',ask);searchInput.addEventListener('keydown',e=>{if(e.key==='Escape'){searchResults.classList.remove('show');searchInput.blur()}if(e.key==='Enter'){e.preventDefault();ask()}});document.addEventListener('click',e=>{if(!e.target.closest('.searchbox'))searchResults.classList.remove('show')});    document.getElementById('closeBtn').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&imageViewer.classList.contains('open')){e.preventDefault();e.stopImmediatePropagation();closeImageViewer();return}if(e.key==='Escape'&&overlay.classList.contains('open'))close();if(overlay.classList.contains('open')&&e.key==='ArrowRight'&&active<19&&!e.target.isContentEditable){e.preventDefault();openQuestionModal(active+1)}if(overlay.classList.contains('open')&&e.key==='ArrowLeft'&&active>0&&!e.target.isContentEditable){e.preventDefault();openQuestionModal(active-1)}});document.getElementById('prevBtn').addEventListener('click',()=>openQuestionModal(active-1));document.getElementById('nextBtn').addEventListener('click',()=>openQuestionModal(active+1));    let highlightTimer=null;
+    function highlightSearchText(query,sectionIndex){
+      if(highlightTimer)clearTimeout(highlightTimer);
+      const root=sectionIndex>=0?detail.querySelectorAll('.block')[sectionIndex]:detail;
+      if(!root)return;
+      const targets=sectionIndex>=0?[root.querySelector('h3'),root.querySelector('.study-text')]:[detail.querySelector('.detail-lead')];
+      const stop=new Set(['co','je','jsou','to','se','na','do','v','ve','z','ze','a','i','o','u','s','k','ke','jak','jaky','jaka','jake','mi','me','pro','podle','ktera','ktery','ktere','muzes','vysvetli','popis','rekni','prosim']);
+      const phrase=normalize(query).trim();
+      const terms=phrase.split(/[^a-z0-9]+/).filter(t=>t.length>1&&!stop.has(t));
+      const marks=[];
+      targets.filter(Boolean).forEach(el=>{
+        const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+        const textNodes=[];while(walker.nextNode())textNodes.push(walker.currentNode);
+        textNodes.forEach(node=>{
+          const text=node.nodeValue||'';if(!text.trim())return;
+          const chars=Array.from(text),starts=[],ends=[];let normalized='';let offset=0;
+          chars.forEach(ch=>{const part=normalize(ch);for(let k=0;k<part.length;k++){starts.push(offset);ends.push(offset+ch.length)}normalized+=part;offset+=ch.length});
+          let ranges=[];
+          const find=(needle)=>{if(!needle)return;let from=0,at;while((at=normalized.indexOf(needle,from))>=0){const start=starts[at],end=ends[at+needle.length-1];if(start!==undefined&&end!==undefined)ranges.push([start,end]);from=at+Math.max(1,needle.length)}};
+          find(phrase);if(!ranges.length)terms.forEach(find);
+          ranges.sort((a,b)=>a[0]-b[0]);const unique=[];ranges.forEach(r=>{if(!unique.length||r[0]>=unique[unique.length-1][1])unique.push(r)});if(!unique.length)return;
+          const fragment=document.createDocumentFragment();let cursor=0;unique.forEach(([start,end])=>{if(start>cursor)fragment.append(document.createTextNode(text.slice(cursor,start)));const mark=document.createElement('mark');mark.className='search-highlight';mark.textContent=text.slice(start,end);fragment.append(mark);marks.push(mark);cursor=end});if(cursor<text.length)fragment.append(document.createTextNode(text.slice(cursor)));node.replaceWith(fragment);
+        });
+      });
+      highlightTimer=setTimeout(()=>marks.forEach(mark=>{if(mark.isConnected)mark.replaceWith(document.createTextNode(mark.textContent||''))}),3000);
+    }
+    function openQuestionModal(i,focus,jumpTo=-1,query=''){ 
+      if(typeof questionSearchTimer!=='undefined'&&questionSearchTimer){clearTimeout(questionSearchTimer);questionSearchTimer=null}active=i;lastFocus=focus||document.activeElement;overlay.classList.add('open');document.body.style.overflow='hidden';renderDetail();document.getElementById('closeBtn').focus();
+      requestAnimationFrame(()=>{const scroller=document.getElementById('modalScroll');if(jumpTo>=0){const target=detail.querySelectorAll('.block')[jumpTo];if(target)scroller.scrollTop=target.getBoundingClientRect().top-scroller.getBoundingClientRect().top+scroller.scrollTop-18}else scroller.scrollTop=0;if(query)highlightSearchText(query,jumpTo)});
+    }
+    function showSearchHistory(){
+      if(searchInput.value.trim()||!searchHistory.length)return;
+      searchResults.innerHTML='';searchResults.classList.add('search-history-list');
+      const panel=document.createElement('div');const heading=document.createElement('div');heading.className='search-history-title';heading.textContent='Historie vyhledávání';panel.append(heading);
+      searchHistory.slice(0,3).forEach(query=>{const item=document.createElement('button');item.type='button';item.className='search-history-item';item.textContent=query;item.addEventListener('click',e=>{e.stopPropagation();searchInput.value=query;searchResults.classList.remove('search-history-list');ask()});panel.append(item)});
+      searchResults.append(panel);searchResults.classList.add('show');
+    }
+    searchInput.addEventListener('focus',showSearchHistory);
+    searchInput.addEventListener('click',showSearchHistory);
+    searchInput.addEventListener('input',()=>{if(searchInput.value.trim()){searchResults.classList.remove('show','search-history-list')}});
+    const questionSearchInput=document.getElementById('questionSearchInput'),questionSearchCount=document.getElementById('questionSearchCount');
+    let questionSearchTimer=null;
+    function clearQuestionSearch(){if(questionSearchTimer){clearTimeout(questionSearchTimer);questionSearchTimer=null}detail.querySelectorAll('.question-search-hit').forEach(mark=>mark.replaceWith(document.createTextNode(mark.textContent||'')));questionSearchCount.textContent='';questionSearchCount.hidden=true}
+    function searchInCurrentQuestion(){
+      clearQuestionSearch();const query=questionSearchInput.value.trim();if(!query)return;
+      const wanted=normalize(query);if(!wanted)return;const hits=[];
+      const walker=document.createTreeWalker(detail,NodeFilter.SHOW_TEXT);const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+      nodes.forEach(node=>{if(node.parentElement&&node.parentElement.closest('[data-search-exclude]'))return;const text=node.nodeValue||'';if(!text.trim())return;const chars=Array.from(text),starts=[],ends=[];let normalized='',offset=0;chars.forEach(ch=>{const part=normalize(ch);for(let k=0;k<part.length;k++){starts.push(offset);ends.push(offset+ch.length)}normalized+=part;offset+=ch.length});let ranges=[],from=0,at;const directNeedle=query.toLocaleLowerCase("cs"),directText=text.toLocaleLowerCase("cs");while((at=directText.indexOf(directNeedle,from))>=0){ranges.push([at,at+directNeedle.length]);from=at+Math.max(1,directNeedle.length)}if(!ranges.length){from=0;while((at=normalized.indexOf(wanted,from))>=0){const start=starts[at],end=ends[at+wanted.length-1];if(start!==undefined&&end!==undefined)ranges.push([start,end]);from=at+Math.max(1,wanted.length)}}if(!ranges.length)return;const frag=document.createDocumentFragment();let cursor=0;ranges.forEach(([start,end])=>{if(start>cursor)frag.append(document.createTextNode(text.slice(cursor,start)));const mark=document.createElement('mark');mark.className='question-search-hit';mark.textContent=text.slice(start,end);frag.append(mark);hits.push(mark);cursor=end});if(cursor<text.length)frag.append(document.createTextNode(text.slice(cursor)));node.replaceWith(frag)});
+      questionSearchCount.textContent=hits.length?`${hits.length}×`:'Nenalezeno';questionSearchCount.hidden=false;if(hits.length){const scroller=document.getElementById('modalScroll'),first=hits[0];scroller.scrollTop=first.getBoundingClientRect().top-scroller.getBoundingClientRect().top+scroller.scrollTop-18;questionSearchTimer=setTimeout(clearQuestionSearch,3000)}
+    }
+    document.getElementById('questionSearchButton').addEventListener('click',searchInCurrentQuestion);
+    questionSearchInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();searchInCurrentQuestion()}if(e.key==='Escape'){clearQuestionSearch();questionSearchInput.value=''}});
+    questionSearchInput.addEventListener('input',()=>{if(!questionSearchInput.value.trim())clearQuestionSearch()});
+    renderGrid();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
