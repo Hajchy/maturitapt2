@@ -235,14 +235,15 @@
   .search-results.show{display:block}
   .hero:has(.search-results.show){padding-bottom:24px!important}
   @media(max-width:720px){.search-results{max-height:150px}.hero:has(.search-results.show){padding-bottom:24px!important}}
-</style></head>
+</style><style>.test-cap-button{display:grid;place-items:center;width:42px;height:42px;padding:0!important;border-radius:50%;flex:0 0 42px}.test-cap-button svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.test-cap-button:hover svg{transform:translateY(-1px)}@media(max-width:720px){.topbar{gap:12px}.test-cap-button{width:40px;height:40px;flex-basis:40px}}</style>
+</head>
 <body>
   <main class="page">
-    <header class="topbar"><div class="brand"><span class="brandmark">m</span><span>Maturitní příprava</span></div><span class="course">PT2</span></header>
+    <header class="topbar"><div class="brand"><span class="brandmark">m</span><span>Maturitní příprava</span></div><button id="openTestTab" class="test-tab-button test-cap-button" type="button" aria-label="Spustit test" title="Vyzkoušet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3.7 2.8 8.3 2.8 12 0v-5M22 9v6"/></svg></button><span class="course">PT2</span></header>
     <section class="hero"><div class="hero-copy"><div class="eyebrow">Tvůj osobní studijní přehled</div><h1>Maturitní otázky<span style="color:var(--green)">.</span></h1><p>Dvacet témat na jednom místě.</p></div><div class="searchbox"><label for="searchInput">VYHLEDEJ SI</label><div class="search-field"><span class="search-icon" aria-hidden="true">✳</span><input id="searchInput" type="search" placeholder="Napiš téma a já ho najdu" autocomplete="off" aria-label="Polož otázku k maturitním tématům"><button id="askButton" class="ask-button" type="button" aria-label="Odeslat otázku">↑</button></div><div class="search-results" id="searchResults" role="log" aria-live="polite" aria-label="Odpovědi asistenta"></div></div></section>
     <div class="toolbar"><div class="section-title">Přehled otázek</div></div>
     <section class="grid" id="grid" aria-label="Seznam maturitních otázek"></section>
-    <div class="test-navigation"><button id="openTestTab" class="test-tab-button" type="button">Vyzkoušet <span aria-hidden="true">↗</span></button></div>
+
   </main>
   <div class="overlay" id="overlay" role="presentation">
     <section class="modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
