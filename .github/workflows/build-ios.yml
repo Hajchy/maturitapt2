@@ -1,0 +1,54 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'index.html'
+      - 'ios/**'
+      - '.github/workflows/build-ios.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify source HTML
+        run: |
+          test -f index.html
+          echo "index.html size: $(wc -c < index.html) bytes"
+
+      - name: Build unsigned iOS app
+        run: |
+          xcodebuild \
+            -project ios/Maturitapt2.xcodeproj \
+            -scheme Maturitapt2 \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package unsigned IPA
+        run: |
+          APP_PATH="build/DerivedData/Build/Products/Release-iphoneos/Maturitapt2.app"
+          test -d "$APP_PATH"
+          test -f "$APP_PATH/index.html"
+          mkdir -p build/Payload
+          cp -R "$APP_PATH" build/Payload/Maturitapt2.app
+          cd build
+          /usr/bin/zip -qry Maturitapt2-unsigned-ipa.ipa Payload
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Maturitapt2-unsigned-ipa
+          path: build/Maturitapt2-unsigned-ipa.ipa
+          if-no-files-found: error
+          retention-days: 14
