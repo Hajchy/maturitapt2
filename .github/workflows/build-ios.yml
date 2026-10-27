@@ -1,4 +1,4 @@
-name: Build iOS IPA
+name: Build iOS and update Appetize
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
           test -f index.html
           echo "index.html size: $(wc -c < index.html) bytes"
 
-      - name: Build unsigned iOS app
+      - name: Build unsigned iPhone app
         run: |
           xcodebuild \
             -project ios/Maturitapt2.xcodeproj \
@@ -31,13 +31,13 @@ jobs:
             -configuration Release \
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
-            -derivedDataPath build/DerivedData \
+            -derivedDataPath build/DeviceDerivedData \
             CODE_SIGNING_ALLOWED=NO \
             build
 
       - name: Package unsigned IPA
         run: |
-          APP_PATH="build/DerivedData/Build/Products/Release-iphoneos/Maturitapt2.app"
+          APP_PATH="build/DeviceDerivedData/Build/Products/Release-iphoneos/Maturitapt2.app"
           test -d "$APP_PATH"
           test -f "$APP_PATH/index.html"
           mkdir -p build/Payload
@@ -45,7 +45,37 @@ jobs:
           cd build
           /usr/bin/zip -qry Maturitapt2-unsigned-ipa.ipa Payload
 
-      - name: Upload IPA artifact
+      - name: Build iOS Simulator app
+        run: |
+          xcodebuild \
+            -project ios/Maturitapt2.xcodeproj \
+            -scheme Maturitapt2 \
+            -configuration Release \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/SimulatorDerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package Simulator app for Appetize
+        run: |
+          APP_PATH="build/SimulatorDerivedData/Build/Products/Release-iphonesimulator/Maturitapt2.app"
+          test -d "$APP_PATH"
+          test -f "$APP_PATH/index.html"
+          cd "$(dirname "$APP_PATH")"
+          /usr/bin/zip -qry "$GITHUB_WORKSPACE/build/Maturitapt2-simulator.zip" Maturitapt2.app
+
+      - name: Update the existing app in Appetize
+        uses: appetizeio/github-action-appetize@v1.1.0
+        with:
+          apiToken: ${{ secrets.APPETIZE_API_TOKEN }}
+          publicKey: ${{ secrets.APPETIZE_PUBLIC_KEY }}
+          platform: ios
+          appFile: build/Maturitapt2-simulator.zip
+          fileType: zip
+          note: "GitHub commit ${{ github.sha }}"
+
+      - name: Save iPhone IPA for iLoader
         uses: actions/upload-artifact@v4
         with:
           name: Maturitapt2-unsigned-ipa
